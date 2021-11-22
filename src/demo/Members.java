@@ -14,19 +14,31 @@ public class Members {
     private boolean active;
     private LocalDate startDate;
 
-    //StringFormat: ISCOMP_ISSENIOR_NAME_MEMBERID_AGE_ACTIVE_STARTDATE;
+    //StringFormat: ISCOMP_ISSENIOR_MEMBERID_NAME_AGE_ACTIVE_STARTDATE;
 
-    //Normalt
-    public Members(int memberID, String name,  LocalDate age, boolean active, LocalDate startDate) {
+    //Creates new user
+    public Members(int memberID, String name,  LocalDate age, boolean active) {
         this.memberID = memberID;
         this.name = name;
         this.age = age;
         this.active = active;
-        this.startDate = startDate;
+        startDate = LocalDate.now();
     }
-    //Competitive
-    public Members(boolean isComp, int memberID, String name,  LocalDate age, boolean active, LocalDate startDate) {
+
+    //Creates new competitive member
+    public Members(boolean isComp, int memberID, String name,  LocalDate age, boolean active) {
         this.isComp = isComp;
+        this.memberID = memberID;
+        this.name = name;
+        this.age = age;
+        this.active = active;
+        startDate = LocalDate.now();
+    }
+
+    //Creates existing member
+    public Members(boolean isComp, boolean isSenior, int memberID, String name, LocalDate age, boolean active, LocalDate startDate){
+        this.isComp = isComp;
+        this.isSenior = isSenior;
         this.memberID = memberID;
         this.name = name;
         this.age = age;

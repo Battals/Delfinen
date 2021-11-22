@@ -8,16 +8,26 @@ public class MembersCompetitive extends Members {
     private Coach coach;
     private ArrayList<Discipline> disciplines;
 
-    //StringFormat: ISCOMP_ISSENIOR_NAME_MEMBERID_AGE_ACTIVE_STARTDATE_COACHID_CRAWL_RYGCRAWL_BUTTERFLY_BREASTSTROKE
+    //StringFormat: ISCOMP_ISSENIOR_MEMBERID_NAME_AGE_ACTIVE_STARTDATE_COACHID_CRAWL_RYGCRAWL_BUTTERFLY_BREASTSTROKE
 
 
 
-    public MembersCompetitive(int memberID, String name, LocalDate age, boolean active, LocalDate startDate,
+    //Creates new member
+    public MembersCompetitive(int memberID, String name, LocalDate age, boolean active,
                               Coach coach, ArrayList<Discipline> disciplines) {
-        super(memberID, name, age, active, startDate);
+        super(memberID, name, age, active);
         this.coach = coach;
         this.disciplines = disciplines;
     }
+
+    //Creates existing member
+    public MembersCompetitive(boolean isComp, boolean isSenior, int memberID, String name, LocalDate age,
+                              boolean active, LocalDate startDate, Coach coach, ArrayList<Discipline> disciplines){
+        super(isComp, isSenior, memberID, name, age, active, startDate);
+        this.coach = coach;
+        this.disciplines = disciplines;
+    }
+
 
 
     private String getDisciplinesData(){
@@ -43,7 +53,6 @@ public class MembersCompetitive extends Members {
 
         return crawl + "_" + rygcrawl + "_" + butterfly + "_" + breaststroke;
     }
-
     @Override
     public String getData() {
         return super.getData() + coach.getCoachID() + getDisciplinesData();
