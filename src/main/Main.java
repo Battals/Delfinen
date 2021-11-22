@@ -1,6 +1,6 @@
 package main;
 
-import database.Database;
+import domain.Database;
 
 public class Main {
 
