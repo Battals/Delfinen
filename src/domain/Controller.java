@@ -1,8 +1,11 @@
 package domain;
 
+import demo.Members;
 import ui.Colours;
 import ui.Userinterface;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -12,6 +15,9 @@ public class Controller {
 
     Userinterface ui = new Userinterface();
     Colours colour = new Colours();
+
+    ArrayList<Members> membersJunior;
+    ArrayList<Members> membersSenior;
 
 
     public void start() {
@@ -55,4 +61,18 @@ public class Controller {
         }
     }
 
+    public void distributeMembers(ArrayList<Members> members){
+        for(int i = 0; i < members.size(); i++){
+            if(LocalDate.now().compareTo(members.get(i).getAge())>=18){
+                membersSenior.add(members.get(i));
+            }
+            if(LocalDate.now().compareTo(members.get(i).getAge())<18) {
+                membersJunior.add(members.get(i));
+            }
+        }
+    }
+
+    public void holdopdeler(ArrayList<Members> members){
+
+    }
 }

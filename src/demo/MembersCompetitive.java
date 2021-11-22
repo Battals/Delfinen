@@ -8,7 +8,7 @@ public class MembersCompetitive extends Members {
     private Coach coach;
     private ArrayList<Discipline> disciplines;
 
-    //StringFormat: NAME_MEMBERID_AGE_ACTIVE_STARTDATE_COACHID_CRAWL_RYGCRAWL_BUTTERFLY_BREASTSTROKE
+    //StringFormat: ISCOMP_ISSENIOR_NAME_MEMBERID_AGE_ACTIVE_STARTDATE_COACHID_CRAWL_RYGCRAWL_BUTTERFLY_BREASTSTROKE
 
 
 
