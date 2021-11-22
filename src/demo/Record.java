@@ -11,6 +11,10 @@ public class Record {
     private int placement;
     private Discipline discipline;
 
+    //1) Hver swømmers bedste resultat inden for hver swømmediciplin; Klasse?
+    //2) Træneren har oversigt, og kan se top 5 swømmere inden for hver swømmediciplin, fordelt senior og junior
+    //3) En måde at se swømmerens bedste tid, inden for hver swømme diciplin, en måde at se top 5
+
     //NormalTraining
     public Record(Members holder, LocalTime time, LocalDate date, Discipline discipline){
         this.holder = holder;
