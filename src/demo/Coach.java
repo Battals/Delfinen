@@ -9,4 +9,8 @@ public class Coach {
         this.coachID = coachID;
         this.name = name;
     }
+
+    public int getCoachID() {
+        return coachID;
+    }
 }

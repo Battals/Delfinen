@@ -4,19 +4,27 @@ import java.time.LocalDate;
 
 public class Members {
 
-    private String name;
     private int memberID;
+    private String name;
     private LocalDate age;
     private boolean active;
     private LocalDate startDate;
 
-    public Members(String name, int memberID, LocalDate age, boolean active, LocalDate startDate) {
+    //StringFormat: NAME_MEMBERID_AGE_ACTIVE_STARTDATE;
+    public Members(int memberID, String name,  LocalDate age, boolean active, LocalDate startDate) {
+        this.memberID = memberID;
         this.name = name;
         this.age = age;
-        this.memberID = memberID;
         this.active = active;
         this.startDate = startDate;
     }
+
+
+
+    public String getData(){
+        return memberID + "_" + name + "_" + age + "_" + active + "_" + startDate;
+    }
+
 
 
 

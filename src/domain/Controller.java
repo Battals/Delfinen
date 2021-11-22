@@ -6,7 +6,7 @@ import ui.Userinterface;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Database {
+public class Controller {
 
     boolean run = true;
 
@@ -53,10 +53,6 @@ public class Database {
                 System.out.println("Ukendt tegn");
             }
         }
-
-
-
-
     }
 
 }

@@ -1,12 +1,12 @@
 package main;
 
-import domain.Database;
+import domain.Controller;
 
 public class Main {
 
 
     public static void main(String[] args) {
-        Database db = new Database();
+        Controller db = new Controller();
         db.start();
     }
 }
