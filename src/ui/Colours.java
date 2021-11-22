@@ -1,4 +1,4 @@
-package demo;
+package ui;
 
 public class Colours {
 

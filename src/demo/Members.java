@@ -2,7 +2,6 @@ package demo;
 
 public class Members {
 
-
     String name;
     int age;
     int memberId;

@@ -1,4 +1,7 @@
-package demo;
+package database;
+
+import ui.Colours;
+import ui.Userinterface;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
