@@ -46,6 +46,6 @@ public class MembersCompetitive extends Members {
 
     @Override
     public String getData() {
-        return super.getData() + coach.getID() + getDisciplinesData();
+        return super.getData() + coach.getCoachID() + getDisciplinesData();
     }
 }
