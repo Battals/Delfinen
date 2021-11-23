@@ -3,7 +3,7 @@ package demo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class MembersCompetitive extends Members {
+public class MemberCompetitive extends Member {
 
     private Coach coach;
     private ArrayList<Discipline> disciplines;
@@ -13,17 +13,17 @@ public class MembersCompetitive extends Members {
 
 
     //Creates new member
-    public MembersCompetitive(int memberID, String name, LocalDate age, boolean active,
-                              Coach coach, ArrayList<Discipline> disciplines) {
+    public MemberCompetitive(int memberID, String name, LocalDate age, boolean active,
+                             Coach coach, ArrayList<Discipline> disciplines) {
         super(memberID, name, age, active);
         this.coach = coach;
         this.disciplines = disciplines;
     }
 
     //Creates existing member
-    public MembersCompetitive(boolean isComp, boolean isSenior, int memberID, String name, LocalDate age,
-                              boolean active, LocalDate startDate, Coach coach, ArrayList<Discipline> disciplines){
-        super(isComp, isSenior, memberID, name, age, active, startDate);
+    public MemberCompetitive(boolean isComp, int memberID, String name, LocalDate age,
+                             boolean active, LocalDate startDate, Coach coach, ArrayList<Discipline> disciplines){
+        super(isComp, memberID, name, age, active, startDate);
         this.coach = coach;
         this.disciplines = disciplines;
     }

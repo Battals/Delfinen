@@ -2,7 +2,7 @@ package demo;
 
 import java.time.LocalDate;
 
-public class Members {
+public class Member {
     //LISTE - BETALINGSINFORMATION
     //BETALINGSKLASSE - Læser Age, og ud fra det giver respektivt
     //
@@ -17,7 +17,7 @@ public class Members {
     //StringFormat: ISCOMP_ISSENIOR_MEMBERID_NAME_AGE_ACTIVE_STARTDATE;
 
     //Creates new user
-    public Members(int memberID, String name,  LocalDate age, boolean active) {
+    public Member(int memberID, String name, LocalDate age, boolean active) {
         this.memberID = memberID;
         this.name = name;
         this.age = age;
@@ -26,7 +26,7 @@ public class Members {
     }
 
     //Creates new competitive member
-    public Members(boolean isComp, int memberID, String name,  LocalDate age, boolean active) {
+    public Member(boolean isComp, int memberID, String name, LocalDate age, boolean active) {
         this.isComp = isComp;
         this.memberID = memberID;
         this.name = name;
@@ -36,9 +36,8 @@ public class Members {
     }
 
     //Creates existing member
-    public Members(boolean isComp, boolean isSenior, int memberID, String name, LocalDate age, boolean active, LocalDate startDate){
+    public Member(boolean isComp, int memberID, String name, LocalDate age, boolean active, LocalDate startDate){
         this.isComp = isComp;
-        this.isSenior = isSenior;
         this.memberID = memberID;
         this.name = name;
         this.age = age;

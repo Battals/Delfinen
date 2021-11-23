@@ -5,7 +5,7 @@ import java.time.LocalTime;
 
 public class Record {
 
-    private Members holder;
+    private Member holder;
     private LocalTime time;
     private LocalDate date;
     private int placement;
@@ -16,7 +16,7 @@ public class Record {
     //3) En måde at se swømmerens bedste tid, inden for hver swømme diciplin, en måde at se top 5
 
     //NormalTraining
-    public Record(Members holder, LocalTime time, LocalDate date, Discipline discipline){
+    public Record(Member holder, LocalTime time, LocalDate date, Discipline discipline){
         this.holder = holder;
         this.time = time;
         this.date = date;
@@ -25,7 +25,7 @@ public class Record {
     }
 
     //Competition
-    public Record(Members holder, LocalTime time, LocalDate date, Discipline discipline, int placement){
+    public Record(Member holder, LocalTime time, LocalDate date, Discipline discipline, int placement){
         this.holder = holder;
         this.time = time;
         this.date = date;

@@ -1,6 +1,6 @@
 package domain;
 
-import demo.Members;
+import demo.Member;
 import ui.Colours;
 import ui.Userinterface;
 
@@ -16,8 +16,8 @@ public class Controller {
     Userinterface ui = new Userinterface();
     Colours colour = new Colours();
 
-    ArrayList<Members> membersJunior;
-    ArrayList<Members> membersSenior;
+    ArrayList<Member> membersJunior;
+    ArrayList<Member> membersSenior;
 
 
     public void start() {
@@ -61,7 +61,7 @@ public class Controller {
         }
     }
 
-    public void distributeMembers(ArrayList<Members> members){
+    public void distributeMembers(ArrayList<Member> members){
         for(int i = 0; i < members.size(); i++){
             if(LocalDate.now().compareTo(members.get(i).getAge())>=18){
                 membersSenior.add(members.get(i));
@@ -72,7 +72,7 @@ public class Controller {
         }
     }
 
-    public void holdopdeler(ArrayList<Members> members){
+    public void holdopdeler(ArrayList<Member> members){
 
     }
 }
