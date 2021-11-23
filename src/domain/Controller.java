@@ -1,5 +1,6 @@
 package domain;
 
+import demo.Accounting;
 import demo.Member;
 import ui.Colours;
 import ui.Userinterface;
@@ -14,7 +15,7 @@ public class Controller {
     boolean run = true;
 
     Userinterface ui = new Userinterface();
-    Colours colour = new Colours();
+    Accounting accounting = new Accounting();
 
     ArrayList<Member> membersJunior;
     ArrayList<Member> membersSenior;
@@ -22,16 +23,12 @@ public class Controller {
 
     public void start() {
 
-        Scanner sc = new Scanner(System.in);
+        ui.printWelcome();
 
-        System.out.println(colour.colourBlue("Delfinen Svømmeklub."));
-
-        boolean run = true;
         while (run) {
             try {
                 ui.printMenu();
-                int input = sc.nextInt();
-                switch(input) {
+                switch(ui.userInputNumber()) {
                     case 1:
                         //Opretmedlem
                         break;
@@ -49,7 +46,7 @@ public class Controller {
                         break;
 
                     default:
-                        System.out.println("Ukendt kommando");
+                        ui.printDefaultMessage();
                         break;
 
 
@@ -74,5 +71,21 @@ public class Controller {
 
     public void holdopdeler(ArrayList<Member> members){
 
+    }
+
+    public void accountControl(){
+        while (run){
+            switch (ui.userInputNumber()){
+                case 1:
+                    //Overblik over inkomst til klubben
+                    break;
+                case 2:
+                    //Se listen over medlemmer der i restance
+                    break;
+                case 3:
+                    //Se listen over priserne
+                    break;
+            }
+        }
     }
 }
