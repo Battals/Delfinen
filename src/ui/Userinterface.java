@@ -1,7 +1,11 @@
 package ui;
 
+import java.util.Scanner;
+
 public class Userinterface {
 
+    Scanner sc = new Scanner(System.in);
+    Colours colour = new Colours();
 
     public void printMenu() {
         System.out.println("""
@@ -14,5 +18,25 @@ public class Userinterface {
                 Tast 5) - Vis resultater.""");
 
 
+    }
+
+    public void printWelcome(){
+        System.out.println(colour.colourBlue("Delfinen Svømmeklub."));
+    }
+
+    public String userInputText(){
+        return sc.nextLine();
+    }
+
+    public int userInputNumber(){
+        return sc.nextInt();
+    }
+
+    public void printMessage(String s){
+        System.out.println(s);
+    }
+
+    public void printDefaultMessage(){
+        System.out.println("Ukendt kommando");
     }
 }

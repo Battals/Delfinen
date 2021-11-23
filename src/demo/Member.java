@@ -11,12 +11,23 @@ public class Member {
     private int memberID;
     private String name;
     private LocalDate age;
+    private int subscription;
+    private String memberType;
     private boolean active;
     private LocalDate startDate;
 
     //StringFormat: ISCOMP_ISSENIOR_MEMBERID_NAME_AGE_ACTIVE_STARTDATE;
 
     //Creates new user
+    public Member(int memberID, String name, LocalDate age, int subscription, String memberType){
+        this.memberID = memberID;
+        this.name = name;
+        this.age = age;
+        this.subscription = subscription;
+        this.memberType = memberType;
+
+    }
+
     public Member(int memberID, String name, LocalDate age, boolean active) {
         this.memberID = memberID;
         this.name = name;
@@ -36,7 +47,7 @@ public class Member {
     }
 
     //Creates existing member
-    public Member(boolean isComp, int memberID, String name, LocalDate age, boolean active, LocalDate startDate){
+    public Member(boolean isComp, int memberID, String name, LocalDate age, boolean active, LocalDate startDate) {
         this.isComp = isComp;
         this.memberID = memberID;
         this.name = name;
@@ -45,26 +56,26 @@ public class Member {
         this.startDate = startDate;
     }
 
-    private void setAgeGroup(){
-        if(LocalDate.now().compareTo(age) >= 18){
+    private void setAgeGroup() {
+        if (LocalDate.now().compareTo(age) >= 18) {
             isSenior = true;
         }
-        if(LocalDate.now().compareTo(age) < 18){
+        if (LocalDate.now().compareTo(age) < 18) {
             isSenior = false;
         }
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
     public LocalDate getAge() {
         return age;
     }
 
-    public String getData(){
+    public String getData() {
         return memberID + "_" + name + "_" + age + "_" + active + "_" + startDate;
     }
-
-
-
-
 
 
 }

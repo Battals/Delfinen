@@ -1,6 +1,6 @@
 package domain;
 
-import demo.Member;
+import demo.*;
 import ui.Colours;
 import ui.Userinterface;
 
@@ -14,7 +14,8 @@ public class Controller {
     boolean run = true;
 
     Userinterface ui = new Userinterface();
-    Colours colour = new Colours();
+    Accounting accounting = new Accounting();
+    public ArrayList<Member> memberList = new ArrayList<>();
 
     ArrayList<Member> membersJunior;
     ArrayList<Member> membersSenior;
@@ -22,18 +23,15 @@ public class Controller {
 
     public void start() {
 
-        Scanner sc = new Scanner(System.in);
+        ui.printWelcome();
 
-        System.out.println(colour.colourBlue("Delfinen Svømmeklub."));
-
-        boolean run = true;
         while (run) {
             try {
                 ui.printMenu();
-                int input = sc.nextInt();
-                switch(input) {
+                switch(ui.userInputNumber()) {
                     case 1:
-                        //Opretmedlem
+                        createMember();
+                        System.out.println("Medlem oprettet");
                         break;
                     case 2:
                         //Vismedlemmer
@@ -49,7 +47,7 @@ public class Controller {
                         break;
 
                     default:
-                        System.out.println("Ukendt kommando");
+                        ui.printDefaultMessage();
                         break;
 
 
@@ -75,4 +73,72 @@ public class Controller {
     public void holdopdeler(ArrayList<Member> members){
 
     }
-}
+
+    public void accountControl(){
+        while (run){
+            switch (ui.userInputNumber()){
+                case 1:
+                    //Overblik over inkomst til klubben
+                    break;
+                case 2:
+                    //Se listen over medlemmer der i restance
+                    break;
+                case 3:
+                    //Se listen over priserne
+                    break;
+            }
+        }
+    }
+
+    public void createMember() {
+        int memberID = memberList.size() + 1;
+        int subscription = 0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Navn: ");
+        String name = scanner.nextLine();
+        System.out.println("Fødselsår?" + "Indtast år-mm-dd");
+        int year = scanner.nextInt();
+        System.out.println("Fødselsmåned?");
+        int month = scanner.nextInt();
+        System.out.println("Fødselsdag?");
+        int day = scanner.nextInt();
+        LocalDate age = LocalDate.of(year, month, day);
+        if (LocalDate.now().getYear() - age.getYear() < 18) {
+            subscription = 1000;
+        } else if (LocalDate.now().getYear() - age.getYear() > 60) {
+            subscription = 1200;
+        } else {
+            subscription = 1600;
+        }
+
+        System.out.println("Hvilken kategori tilhører medlemmet?");
+        System.out.println("1. Konkurrencesvømmer");
+        System.out.println("2. Motionist");
+        System.out.println("3. Passiv");
+        String memberType;
+        switch (indtastTal()){
+            case 1:
+                memberType = "Konkurrencesvømmer";
+                Competitive competitive = new Competitive(memberID, name, age, subscription, memberType);
+                memberList.add(competitive);
+                break;
+            case 2:
+                memberType = "Motionist";
+                Exerciser exerciser = new Exerciser(memberID, name, age, subscription, memberType);
+                memberList.add(exerciser);
+                break;
+            case 3:
+                memberType = "Passiv";
+                subscription = 500;
+                Passive passive = new Passive(memberID, name, age, subscription, memberType);
+                memberList.add(passive);
+                break;
+                
+        }
+
+        }
+        private int indtastTal(){
+            Scanner sc = new Scanner(System.in);
+            String tekst = sc.nextLine();
+            return Integer.parseInt(tekst);
+}}
