@@ -8,6 +8,7 @@ public class Member {
     //
     private boolean isComp = false;
     private boolean isSenior;
+
     private int memberID;
     private String name;
     private LocalDate age;
@@ -75,6 +76,10 @@ public class Member {
 
     public String getData() {
         return memberID + "_" + name + "_" + age + "_" + active + "_" + startDate;
+    }
+
+    public int getMemberID(){
+        return memberID;
     }
 
 

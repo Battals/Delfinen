@@ -14,6 +14,7 @@ public class Controller {
     boolean run = true;
 
     Userinterface ui = new Userinterface();
+    Colours colours = new Colours();
     Accounting accounting = new Accounting();
     public ArrayList<Member> memberList = new ArrayList<>();
 
@@ -28,7 +29,7 @@ public class Controller {
         while (run) {
             try {
                 ui.printMenu();
-                switch(ui.userInputNumber()) {
+                switch (ui.userInputNumber()) {
                     case 1:
                         createMember();
                         System.out.println("Medlem oprettet");
@@ -37,7 +38,7 @@ public class Controller {
                         //Vismedlemmer
                         break;
                     case 3:
-                        //Sletmedlem
+                        deleteMember();
                         break;
                     case 4:
                         //Adm resultater
@@ -53,30 +54,30 @@ public class Controller {
 
                 }
 
-            } catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.println("Ukendt tegn");
             }
         }
     }
 
-    public void distributeMembers(ArrayList<Member> members){
-        for(int i = 0; i < members.size(); i++){
-            if(LocalDate.now().compareTo(members.get(i).getAge())>=18){
+    public void distributeMembers(ArrayList<Member> members) {
+        for (int i = 0; i < members.size(); i++) {
+            if (LocalDate.now().compareTo(members.get(i).getAge()) >= 18) {
                 membersSenior.add(members.get(i));
             }
-            if(LocalDate.now().compareTo(members.get(i).getAge())<18) {
+            if (LocalDate.now().compareTo(members.get(i).getAge()) < 18) {
                 membersJunior.add(members.get(i));
             }
         }
     }
 
-    public void holdopdeler(ArrayList<Member> members){
+    public void holdopdeler(ArrayList<Member> members) {
 
     }
 
-    public void accountControl(){
-        while (run){
-            switch (ui.userInputNumber()){
+    public void accountControl() {
+        while (run) {
+            switch (ui.userInputNumber()) {
                 case 1:
                     //Overblik over inkomst til klubben
                     break;
@@ -88,6 +89,12 @@ public class Controller {
                     break;
             }
         }
+    }
+
+    private int enterDigit() {
+        Scanner sc = new Scanner(System.in);
+        String tekst = sc.nextLine();
+        return Integer.parseInt(tekst);
     }
 
     public void createMember() {
@@ -116,7 +123,7 @@ public class Controller {
         System.out.println("2. Motionist");
         System.out.println("3. Passiv");
         String memberType;
-        switch (indtastTal()){
+        switch (enterDigit()) {
             case 1:
                 memberType = "Konkurrencesvømmer";
                 Competitive competitive = new Competitive(memberID, name, age, subscription, memberType);
@@ -133,12 +140,37 @@ public class Controller {
                 Passive passive = new Passive(memberID, name, age, subscription, memberType);
                 memberList.add(passive);
                 break;
-                
-        }
 
         }
-        private int indtastTal(){
-            Scanner sc = new Scanner(System.in);
-            String tekst = sc.nextLine();
-            return Integer.parseInt(tekst);
-}}
+    }
+
+    public void deleteMember() {
+        Scanner sc = new Scanner(System.in);
+        boolean a = false;
+        boolean b = false;
+        System.out.println("Medlemmets ID: ");
+        while (a = false) {
+            for (int i = 0; i < memberList.size(); i++) {
+                if (memberList.get(i).getMemberID() == enterDigit()) {
+                    System.out.println("Ønsker du at slette medlemmet med ID\n" + memberList.get(i));
+                    System.out.println("Ja/Nej");
+                    while (b = false) {
+                        String input = sc.nextLine();
+                        if (input.equalsIgnoreCase("Ja")) {
+                            memberList.remove(i);
+                            System.out.println(colours.colourRed("Medlem med ID " + i + " er slettet"));
+                            b = true;
+                        } else if (input.equalsIgnoreCase("Nej")) {
+                            b = true;
+                        }
+                    }
+                }
+
+            }
+        }
+
+
+    }
+
+
+}
