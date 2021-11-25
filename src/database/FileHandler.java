@@ -4,11 +4,19 @@ package database;
 import demo.*;
 import demo.Record;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class FileHandler {
+
+    File fileMembers = new File("data/members.txt");
+    File fileRecords = new File("data/records.txt");
+    File fileContingent = new File("data/contingent.txt");
 
     //Member:
     //String Format: ISCOMP_MEMBERID_NAME_AGE_ACTIVE_STARTDATE
@@ -22,13 +30,27 @@ public class FileHandler {
     //String Format: PLACEMENT_HOLDERID_TIME_DATE_DISCIPLINE
     //Data Format: PLACEMENT_Member holder, LocalTime time, LocalDate date, Discipline discipline
 
-
     //Example: 12_Jake_1999-07-29_true_2021-11-22_1_true_false_false_true
 
+    //Surface:
     public void addMember(Member member){
-
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("data/members.txt",fileMembers.exists()));
+            writer.newLine();
+            writer.write(member.getData());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void addRecord(Record record){
+    }
+    public void addContingent(String object){
     }
 
+
+    //System
+    public void addObject()
 
     //Converters
     public LocalTime stringToLocalTime(String time){
