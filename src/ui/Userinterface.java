@@ -13,8 +13,8 @@ public class Userinterface {
                 
                 Tast 1) - Opret nyt medlem.
                 Tast 2) - Vis medlemmer.
-                Tast 3) - Slet medlem.
-                Tast 4) - Adm. resultater.
+                Tast 3) - Vis medlemmer i restance.
+                Tast 4) - Slet medlem.
                 Tast 5) - Vis resultater.""");
 
 

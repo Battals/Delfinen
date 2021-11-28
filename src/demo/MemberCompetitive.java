@@ -3,7 +3,7 @@ package demo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class MemberCompetitive extends Member {
+/*public class MemberCompetitive extends Member {
 
     private Coach coach;
     private ArrayList<Discipline> disciplines;
@@ -13,6 +13,7 @@ public class MemberCompetitive extends Member {
 
 
     //Creates new member
+    /*
     public MemberCompetitive(int memberID, String name, LocalDate age, boolean active,
                              Coach coach, ArrayList<Discipline> disciplines) {
         super(memberID, name, age, active);
@@ -57,4 +58,5 @@ public class MemberCompetitive extends Member {
     public String getData() {
         return super.getData() + "_" + coach.getCoachID() + "_" + getDisciplinesData();
     }
-}
+}*/
+

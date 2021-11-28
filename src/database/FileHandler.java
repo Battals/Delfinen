@@ -33,9 +33,9 @@ public class FileHandler {
     //Example: 12_Jake_1999-07-29_true_2021-11-22_1_true_false_false_true
 
     //Surface:
-    public void addMember(Member member){
+    public void addMember(Member member) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("data/members.txt",fileMembers.exists()));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("data/members.txt", fileMembers.exists()));
             writer.newLine();
             writer.write(member.getData());
             writer.close();
@@ -43,24 +43,27 @@ public class FileHandler {
             e.printStackTrace();
         }
     }
-    public void addRecord(Record record){
+
+    public void addRecord(Record record) {
     }
-    public void addContingent(String object){
+
+    public void addContingent(String object) {
     }
 
 
     //System
-    public void addObject()
+    // public void addObject();
 
     //Converters
-    public LocalTime stringToLocalTime(String time){
+    public LocalTime stringToLocalTime(String time) {
         String[] data = time.split(":");
         int hours = Integer.parseInt(data[0]);
         int minutes = Integer.parseInt(data[1]);
         int seconds = Integer.parseInt(data[2]);
         return LocalTime.of(hours, minutes, seconds);
     }
-    public LocalDate stringToLocalDate(String date){
+
+    public LocalDate stringToLocalDate(String date) {
         String[] data = date.split("-");
         int year = Integer.parseInt(data[0]);
         int month = Integer.parseInt(data[1]);
@@ -70,21 +73,21 @@ public class FileHandler {
 
     //StringReader
     //StringReader: Record
-    public Record stringToRecord(String record){
+    public Record stringToRecord(String record) {
         String[] data = record.split("_");
         int placement = Integer.parseInt(data[0]);
         Member holder = null;
         LocalTime time = stringToLocalTime(data[2]);
         LocalDate date = stringToLocalDate(data[3]);
         Discipline discipline = Discipline.valueOf(data[4]);
-        if(placement==0){
-            return new Record(holder, time, date , discipline);
+        if (placement == 0) {
+            return new Record(holder, time, date, discipline);
         } else {
             return new Record(holder, time, date, discipline, placement);
         }
     }
 
-    //StringReader: Member
+    /*//StringReader: Member
     public Member stringToMember(String member){
         String[] data = member.split("_");
         if(Boolean.getBoolean(data[0])){
@@ -112,5 +115,6 @@ public class FileHandler {
         boolean active = Boolean.getBoolean(data[4]);
         LocalDate startDate = stringToLocalDate(data[5]);
         return new Member(isComp, memberID, name, age, active, startDate);
-    }
+    } */
+
 }
