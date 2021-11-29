@@ -31,6 +31,7 @@ public class FileHandler {
 
     //CONTINGENT???:
     //evt. int værdi i member, antal måneder der er blevet betalt for
+    //Overall Status, int activeMonths, int inactiveMonths, int comp
 
     //Surface:
     public void addMember(Member member) {
