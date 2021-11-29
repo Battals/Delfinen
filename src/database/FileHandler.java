@@ -18,19 +18,19 @@ public class FileHandler {
     File fileRecords = new File("data/records.txt");
     File fileContingent = new File("data/contingent.txt");
 
-    //Member:
-    //String Format: ISCOMP_MEMBERID_NAME_AGE_ACTIVE_STARTDATE
-    //Data Format: boolean isComp, int memberID, String name, LocalDate age, boolean active, LocalDate startDate
+    //MEMBERDATA:
+    //ISCOMP_ISCOACH_ID_NAME_AGE_ACTIVE_STARTDATE
+    //boolean isComp, boolean isCoach, int id, String name, LocalDate age, boolean active, LocalDate startDate
 
-    //MemberCompetitive:
-    //String Format: ISCOMP_MEMBERID_NAME_AGE_ACTIVE_STARTDATE_COACHID_CRAWL_RYGCRAWL_BUTTERFLY_BREASTSTROKE
-    //Data Format: boolean isComp, int memberID, String name, LocalDate age, boolean active, LocalDate startDate, Coach coach, ArrayList<Discipline> disciplines
+    //COMPDATA:
+    //ISCOMP_ISCOACH_ID_NAME_AGE_ACTIVE_STARTDATE_COACHID_CRAWL_RYGCRAWL_BUTTERFLY_BREASTSTROKE
+    //boolean isComp, boolean isCoach, int id, String name, LocalDate age, boolean active, LocalDate startDate, int coachID, Arraylist<Disciplin> disciplines
 
-    //Record:
-    //String Format: PLACEMENT_HOLDERID_TIME_DATE_DISCIPLINE
-    //Data Format: PLACEMENT_Member holder, LocalTime time, LocalDate date, Discipline discipline
+    //RECORDSDATA:
+    //HOLDERID_DISCIPLINE_PLACEMENT_TIME_DATE
 
-    //Example: 12_Jake_1999-07-29_true_2021-11-22_1_true_false_false_true
+    //CONTINGENT???:
+    //evt. int værdi i member, antal måneder der er blevet betalt for
 
     //Surface:
     public void addMember(Member member) {
