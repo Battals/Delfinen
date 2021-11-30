@@ -91,6 +91,8 @@ public class Controller {
             switch (ui.userInputNumber()) {
                 case 1:
                     //Overblik over inkomst til klubben
+                    //instance of Accountant("Hello welcome")
+                    // else { "Only for accountants" }
                     break;
                 case 2:
                     //Se listen over medlemmer der i restance
