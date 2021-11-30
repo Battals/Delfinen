@@ -19,12 +19,12 @@ public class FileHandler {
     File fileContingent = new File("data/contingent.txt");
 
     //MEMBERDATA:
-    //ISCOMP_ISCOACH_ID_NAME_AGE_ACTIVE_STARTDATE
-    //boolean isComp, boolean isCoach, int id, String name, LocalDate age, boolean active, LocalDate startDate
+    //ISCOMP_ID_NAME_AGE_ACTIVE_STARTDATE
+    //boolean isComp, int id, String name, LocalDate age, boolean active, LocalDate startDate
 
     //COMPDATA:
-    //ISCOMP_ISCOACH_ID_NAME_AGE_ACTIVE_STARTDATE_COACHID_CRAWL_RYGCRAWL_BUTTERFLY_BREASTSTROKE
-    //boolean isComp, boolean isCoach, int id, String name, LocalDate age, boolean active, LocalDate startDate, int coachID, Arraylist<Disciplin> disciplines
+    //ISCOMP_ID_NAME_AGE_ACTIVE_STARTDATE_COACHID_CRAWL_RYGCRAWL_BUTTERFLY_BREASTSTROKE
+    //boolean isComp, int id, String name, LocalDate age, boolean active, LocalDate startDate, int coachID, Arraylist<Disciplin> disciplines
 
     //RECORDSDATA:
     //HOLDERID_DISCIPLINE_PLACEMENT_TIME_DATE
