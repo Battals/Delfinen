@@ -21,6 +21,7 @@ public class Member2 {
         this.active = active;
         startDate = LocalDate.now();
     }
+    //new Member(name, age, active)
     //Super for Competitive
     public Member2(boolean isComp, String name, LocalDate age, boolean active) {
         idGenerator();
@@ -31,6 +32,7 @@ public class Member2 {
         this.active = active;
         startDate = LocalDate.now();
     }
+    //new CompetitiveMember(boolean isComp = true, String name, LocalDate age, boolean active, Coach coach, Arraylist<Discipline> disciplines)
     //Already Exists
     public Member2(boolean isComp, int id, String name, LocalDate age, boolean active, double debt, LocalDate startDate){
         this.isComp = isComp;

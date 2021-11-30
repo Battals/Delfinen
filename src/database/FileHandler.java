@@ -34,21 +34,16 @@ public class FileHandler {
     //Overall Status, int activeMonths, int inactiveMonths, int comp
 
     //Surface:
-    public void addMember(Member member) {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("data/members.txt", fileMembers.exists()));
-            writer.newLine();
-            writer.write(member.getData());
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void createMember(Member member){
+    }
+    public void editMember(Member member){
+    }
+    public void deleteMember(Member member){
     }
 
-    public void addRecord(Record record) {
+    public void addRecord(Record record){
     }
-
-    public void addContingent(String object) {
+    public void deleteRecord(Record record){
     }
 
 
