@@ -16,9 +16,9 @@ public class Coach extends Member {
     public static void printMenu() {
         }
 
-        private static void switchMenu (Scanner input,int choice);
+        private static void switchMenu (Scanner input,int choice) {
 
-        {int choice;
+            int choice;
 
             Scanner input = new Scanner(System.in);
 
