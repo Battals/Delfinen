@@ -13,4 +13,8 @@ public class Coach extends User {
         super(user, password);
         this.id = id;
     }
+
+    public int getId(){
+        return id;
+    }
 }

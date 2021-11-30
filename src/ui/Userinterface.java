@@ -72,12 +72,12 @@ public class Userinterface {
     }
     public boolean yesOrNo(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("yes or no?");
+        System.out.println("Ja/Nej");
         String answer = sc.nextLine().toLowerCase();
-        while(!answer.equals("yes") && !answer.equals("no")){
-            System.out.println("please type 'yes' or 'no'");
+        while(!answer.equals("ja") && !answer.equals("nej")){
+            System.out.println("Skriv venligt 'ja' eller 'nej'");
             answer = sc.nextLine();
         }
-        return answer.equals("yes");
+        return answer.equals("ja");
     }
 }
