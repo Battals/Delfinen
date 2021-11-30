@@ -6,7 +6,7 @@ import java.util.Random;
 public class Member2 {
 
     private boolean isComp = false;
-    private int id;
+    private int id; //Må ikke redigeres
     private String name;
     private LocalDate age;
     private boolean active;
@@ -33,7 +33,7 @@ public class Member2 {
         startDate = LocalDate.now();
     }
     //new CompetitiveMember(boolean isComp = true, String name, LocalDate age, boolean active, Coach coach, Arraylist<Discipline> disciplines)
-    //Already Exists
+    //Already Exists(FileHandler)
     public Member2(boolean isComp, int id, String name, LocalDate age, boolean active, double debt, LocalDate startDate){
         this.isComp = isComp;
         this.id = id;

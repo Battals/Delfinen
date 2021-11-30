@@ -7,12 +7,14 @@ import ui.Userinterface;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Controller {
 
     boolean run = true;
 
+    User currentUser;
     Userinterface ui = new Userinterface();
     Colours colours = new Colours();
     Accounting accounting = new Accounting();
@@ -24,7 +26,12 @@ public class Controller {
     ArrayList<Member> membersJunior;
     ArrayList<Member> membersSenior;
 
+    public void login(){
+        String username;
+        String password;
 
+        currentUser = fileHandler.registerLogin();
+    }
     public void start() {
 
         ui.printWelcome();
@@ -99,6 +106,26 @@ public class Controller {
         Scanner sc = new Scanner(System.in);
         String tekst = sc.nextLine();
         return Integer.parseInt(tekst);
+    }
+
+    private int idGenerator(){
+        int id;
+        Random random = new Random();
+        id = random.nextInt(9999);
+        boolean invalid = true;
+        while(invalid) {
+            int duplicates = 0;
+            id = random.nextInt(9999);
+            for (int i = 0; i < memberList.size(); i++) {
+                if (memberList.get(i).getMemberID() == id) {
+                    duplicates++;
+                }
+            }
+            if(duplicates==0){
+                invalid = false;
+            }
+        }
+        return id;
     }
 
     public void createMember() {
@@ -190,7 +217,7 @@ public class Controller {
                 String input = sc.nextLine();
                 if (input.equalsIgnoreCase("Ja")) {
                     memberList.remove(i);
-                    System.out.println(colours.colourRed("Medlem er slettet"));
+                    ui.printMessage(colours.colourRed("Medlem er slettet"));
                     break;
                 } else if (input.equalsIgnoreCase("Nej")) {
                     break;
