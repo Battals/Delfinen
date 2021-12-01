@@ -33,22 +33,39 @@ public class FileHandler {
     //evt. int værdi i member, antal måneder der er blevet betalt for
     //Overall Status, int activeMonths, int inactiveMonths, int comp
 
-    //Surface:
-    public void createMember(Member member){
+    //Crossused
+    public void addObject(Object object){
+        if(object instanceof Member){
+            addData(((Member) object).getData(), fileMembers);
+        }
+        else if(object instanceof Record){
+            addData(object.getData());
+        }
+        else {
+            System.out.println("invalid?");
+        }
     }
-    public void editMember(Member member){
+    public void removeObject(Object object){
     }
-    public void deleteMember(Member member){
+    public void editObject(Object object){
     }
-
-    public void addRecord(Record record){
-    }
-    public void deleteRecord(Record record){
-    }
-
 
     //System
-    // public void addObject();
+    private void addData(String data, File file){
+    }
+    private void deleteData(String data, File file){
+    }
+    private void editData(String data, File file){
+    }
+
+
+
+
+
+
+
+
+
 
     //Converters
     public LocalTime stringToLocalTime(String time) {

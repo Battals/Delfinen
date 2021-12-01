@@ -33,5 +33,9 @@ public class Record {
         this.placement = placement;
     }
 
+    public String getData(){
+        return "test";
+    }
+
 
 }
