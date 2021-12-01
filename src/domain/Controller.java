@@ -7,28 +7,35 @@ import ui.Userinterface;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Controller {
 
     boolean run = true;
 
+    User currentUser;
     Userinterface ui = new Userinterface();
     Colours colours = new Colours();
     Accounting accounting = new Accounting();
+    public ArrayList<Coach> coaches = new ArrayList<>();
 
 
     public ArrayList<Member> memberList = new ArrayList<>();
     private ArrayList<Member> restanceList = new ArrayList<>();
 
+
     ArrayList<Member> membersJunior;
     ArrayList<Member> membersSenior;
 
+    public void login(){
+        String username;
+        String password;
 
+        //currentUser = fileHandler.registerLogin();
+    }
     public void start() {
-
         ui.printWelcome();
-
         while (run) {
             try {
                 ui.printMenu();
@@ -50,7 +57,6 @@ public class Controller {
                     case 5:
                         //Vis resultater
                         break;
-
                     default:
                         ui.printDefaultMessage();
                         break;
@@ -84,6 +90,8 @@ public class Controller {
             switch (ui.userInputNumber()) {
                 case 1:
                     //Overblik over inkomst til klubben
+                    //instance of Accountant("Hello welcome")
+                    // else { "Only for accountants" }
                     break;
                 case 2:
                     //Se listen over medlemmer der i restance
@@ -101,80 +109,90 @@ public class Controller {
         return Integer.parseInt(tekst);
     }
 
+    private int idGenerator(){
+        int id;
+        Random random = new Random();
+        id = random.nextInt(9999);
+        boolean invalid = true;
+        while(invalid) {
+            int duplicates = 0;
+            id = random.nextInt(9999);
+            for (int i = 0; i < memberList.size(); i++) {
+                if (memberList.get(i).getMemberID() == id) {
+                    duplicates++;
+                }
+            }
+            if(duplicates==0){
+                invalid = false;
+            }
+        }
+        return id;
+    }
+
     public void createMember() {
-        int memberID = memberList.size() + 1;
-        int subscription = 0;
-        int payment = 0;
-        String swimmerType;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Fulde navn: ");
-        String name = scanner.nextLine();
-        System.out.println("Fødselsår?" + " Indtast [åååå]");
-        int year = scanner.nextInt();
-        System.out.println("Fødselsmåned? [mm]");
-        int month = scanner.nextInt();
-        System.out.println("Fødselsdag? [dd]");
-        int day = scanner.nextInt();
-        LocalDate age = LocalDate.of(year, month, day);
-        if (LocalDate.now().getYear() - age.getYear() < 18) {
-            subscription = 1000;
-            swimmerType = "Juniorsvømmer";
-        } else if (LocalDate.now().getYear() - age.getYear() > 60) {
-            swimmerType = "Seniorsvømmer";
-            subscription = 1200;
-        } else {
-            subscription = 1600;
-            swimmerType = "Seniorsvømmer";
+        Scanner sc = new Scanner(System.in);
+        ui.printMessage("Fulde navn:");
+        String name = sc.nextLine();
+        ui.printMessage("Fødseldato: ");
+        LocalDate age = typeDate();
+        System.out.println("Aktivt medlemskab?");
+        boolean active = ui.yesOrNo();
+        ui.printMessage("Er medlemmet konkurrence svømmer?");
+        boolean isComp = ui.yesOrNo();
 
+        Member2 member;
+        if (isComp){
+            if (isComp){
+                ui.printMessage("Opretter medlem");
+                member = createCompetitiveMember(name, age, active);}
+            else {
+                ui.printMessage("Opretter motions medlem");
+                member = new Member2(name, age, active);
+
+
+                System.out.println(member);
+    }}}
+
+    public void printCoaches(){
+        for (int i = 0; i < coaches.size(); i++){
+            System.out.println(coaches.get(i));
         }
+    }
 
-        System.out.println("Kontigent = " + subscription);
-        System.out.println("Ønsker medlemmet at betale nu? - Ja/Nej");
-        String input = scanner.next();
-        if (input.equalsIgnoreCase("Ja")) {
-            payment = (+subscription);
-        } else if (input.equalsIgnoreCase("Nej")) {
-            payment = (subscription - subscription * 2);
+    public MemberCompetitive2 createCompetitiveMember(String name, LocalDate age, boolean active){
+        Scanner sc = new Scanner(System.in);
+        ui.printMessage("Udøvende svømmediscipliner.");
+        ArrayList<Discipline> disciplines = new ArrayList<>();
+        ui.printMessage("Crawl?");
+        if(ui.yesOrNo()){
+            disciplines.add(Discipline.CRAWL);
         }
-
-        System.out.println("Hvilken kategori tilhører medlemmet?");
-        System.out.println("1. Konkurrencesvømmer");
-        System.out.println("2. Motionist");
-        System.out.println("3. Passiv");
-        String memberType;
-
-
-        switch (enterDigit()) {
-            case 1:
-                memberType = "Konkurrencesvømmer";
-                Competitive competitive = new Competitive(memberID, name, age, subscription, memberType, swimmerType, payment);
-                memberList.add(competitive);
-                if (payment <= 0) {
-                    restanceList.add(competitive);
-                }
-
-                break;
-            case 2:
-                memberType = "Motionist";
-                Exerciser exerciser = new Exerciser(memberID, name, age, subscription, memberType, swimmerType, payment);
-                memberList.add(exerciser);
-                if (payment < 0) {
-                    restanceList.add(exerciser);
-                }
-                break;
-            case 3:
-                memberType = "Passiv";
-                subscription = 500;
-                Passive passive = new Passive(memberID, name, age, subscription, memberType, swimmerType, payment);
-                memberList.add(passive);
-                if (payment < 0) {
-                    restanceList.add(passive);
-                }
-                break;
-
+        ui.printMessage("Rygcrawl?");
+        if (ui.yesOrNo()){
+            disciplines.add(Discipline.RYGCRAWL);
         }
-
-
+        ui.printMessage("Butterfly?");
+        if (ui.yesOrNo()){
+            disciplines.add(Discipline.BUTTERFLY);
+        }
+        ui.printMessage("Brystswømning?");
+        if (ui.yesOrNo()){
+            disciplines.add(Discipline.BREASTSTROKE);
+        }
+        printCoaches();
+        ui.printMessage("Vælg en træner ");
+        int coachID = sc.nextInt();
+        Coach coach = null;
+        boolean invalidCoach = true;
+        while(invalidCoach) {
+            for (int i = 0; i < coaches.size(); i++) {
+                if(coachID==coaches.get(i).getId()){
+                    coach = coaches.get(i);
+                    invalidCoach = false;
+                }
+            }
+        }
+        return new MemberCompetitive2(name, age, active, coach, disciplines);
     }
 
     public void deleteMember() {
@@ -190,7 +208,7 @@ public class Controller {
                 String input = sc.nextLine();
                 if (input.equalsIgnoreCase("Ja")) {
                     memberList.remove(i);
-                    System.out.println(colours.colourRed("Medlem er slettet"));
+                    ui.printMessage(colours.colourRed("Medlem er slettet"));
                     break;
                 } else if (input.equalsIgnoreCase("Nej")) {
                     break;
@@ -202,7 +220,7 @@ public class Controller {
 
 
     public void getrestanceList() {
-        for (int i = 0; restanceList.size() < 0; i++) {
+        for (int i = 0; i < restanceList.size(); i++) {
             System.out.println(restanceList.get(i).getName());
         }
         if (restanceList.isEmpty()) {
@@ -223,6 +241,30 @@ public class Controller {
         for (int i = 0; i < memberList.size(); i++) {
             System.out.println(colours.colourGreen("ID: " + memberList.get(i).getMemberID()) + " / Navn: " + memberList.get(i).getName());
         }
+    }
+
+    public LocalDate typeDate(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Fødselsår(ÅÅÅÅ): ");
+        int year = sc.nextInt();
+        while(year > LocalDate.now().getYear() || year < (LocalDate.now().getYear()) - 110){
+            System.out.println("Ukendt år");
+            year = sc.nextInt();
+        }
+        System.out.print("Fødselsmåned(MM): ");
+        int month = sc.nextInt();
+        while(month > 12 || month < 1){
+            System.out.println("Ukendt måned");
+            month = sc.nextInt();
+        }
+        System.out.println("Dag(DD): ");
+        int day = sc.nextInt();
+        while(day > 31 || day < 1){
+            System.out.println("Ukendt dag");
+            day = sc.nextInt();
+        }
+
+        return LocalDate.of(year, month, day);
     }
 
 

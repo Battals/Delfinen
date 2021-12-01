@@ -21,6 +21,7 @@ public class Member {
     private String swimmerType;
     private boolean active;
     private int payment;
+    private static int memberCount;
     private LocalDate startDate;
 
     //StringFormat: ISCOMP_ISSENIOR_MEMBERID_NAME_AGE_ACTIVE_STARTDATE;
@@ -28,13 +29,18 @@ public class Member {
 
     //Creates new user
     public Member(int memberID, String name, LocalDate age, int subscription, String memberType, String swimmerType, int payment){
-        this.memberID = memberID;
+        //this.memberID = memberID;
         this.name = name;
         this.age = age;
         this.subscription = subscription;
         this.memberType = memberType;
         this.swimmerType = swimmerType;
         this.payment = payment;
+        memberCount++;
+        this.memberID = memberCount;
+        if (memberType.equalsIgnoreCase("Passive")){
+            subscription = 500;
+        }
 
     }
 
@@ -95,9 +101,11 @@ public class Member {
 
     @Override
     public String toString(){
-        return colour.colourGreen("MedlemsID: " + memberID) + " - " + "Medlemmets navn: " +
-                name + " - " + "Fødselsdagsdato: " +  age + " - " + "Kontigent: " +  subscription + "\n - " + "Medlemstype: " +
-                memberType + " - " + "Svømmertype: " +  swimmerType + " - " + "Betalingstatus: " + payment + "kr.";
+        return colour.colourGreen("\nMedlemsID: " + memberID) + " - " + colour.colourWhite("\nMedlemmets navn: ") +
+                name + " - " + colour.colourWhite("\nFødselsdagsdato: ") +  age + " - " +
+                colour.colourWhite("\nKontigent: ") +  subscription + " - " + colour.colourWhite("\nMedlemstype: ")+
+                memberType + " - " +colour.colourWhite("\nSvømmertype: ")  +  swimmerType + " - " + colour.colourWhite("\nBetalingstatus: ")
+                + payment + "kr.";
     }
 
 
