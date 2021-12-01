@@ -38,8 +38,8 @@ public class FileHandler {
 
     //DataHandling
     public void addObject(Object object){
-        if(object instanceof Member2){
-            addData(((Member2) object).getData(), fileMembers);
+        if(object instanceof Member){
+            addData(((Member) object).getData(), fileMembers);
         }
         else if(object instanceof Record){
             addData(((Record) object).getData(),fileRecords);
@@ -49,8 +49,8 @@ public class FileHandler {
         }
     }
     public void editObject(Object object){
-        if(object instanceof Member2){
-            editData(((Member2) object).getData(), fileMembers);
+        if(object instanceof Member){
+            editData(((Member) object).getData(), fileMembers);
         }
         else if(object instanceof Record){
             editData(((Record) object).getData(),fileRecords);
@@ -62,7 +62,7 @@ public class FileHandler {
     public void removeObject(Object object){
     }
 
-    public ArrayList<Member2> getMembers(){
+    public ArrayList<Member> getMembers(){
         ArrayList<String> membersData = new ArrayList<>();
         try {
             Scanner sc = new Scanner(fileMembers);
@@ -132,15 +132,15 @@ public class FileHandler {
 
 
     //StringReaders
-    private ArrayList<Member2> getMembersToArray(ArrayList<String> data){
-        ArrayList<Member2> members = new ArrayList<>();
+    private ArrayList<Member> getMembersToArray(ArrayList<String> data){
+        ArrayList<Member> members = new ArrayList<>();
         for(int i = 0; i < data.size(); i++){
             members.add(stringReaderMember(data.get(i)));
         }
         return members;
     }
-    private Member2 stringReaderMember(String memberData){
-        Member2 member;
+    private Member stringReaderMember(String memberData){
+        Member member;
         String[] data = memberData.split("_");
         int id = Integer.parseInt(data[0]);
         boolean isComp = Boolean.parseBoolean(data[1]);
@@ -152,9 +152,9 @@ public class FileHandler {
         if(isComp){
             Coach coach = findCoach(data[6]);
             ArrayList<Discipline> disciplines = stringReaderDisciplines(data[7], data[8], data[9], data[10]);
-            member = new MemberCompetitive2(true, id, name, age, active, debt, startDate, coach, disciplines);
+            member = new MemberCompetitive(true, id, name, age, active, debt, startDate, coach, disciplines);
         } else {
-            member = new Member2(false, id, name, age, active, debt, startDate);
+            member = new Member(false, id, name, age, active, debt, startDate);
         }
         return member;
     }

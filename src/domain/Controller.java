@@ -140,14 +140,14 @@ public class Controller {
         ui.printMessage("Er medlemmet konkurrence svømmer?");
         boolean isComp = ui.yesOrNo();
 
-        Member2 member;
+        Member member;
         if (isComp){
             if (isComp){
                 ui.printMessage("Opretter medlem");
                 member = createCompetitiveMember(name, age, active);}
             else {
                 ui.printMessage("Opretter motions medlem");
-                member = new Member2(name, age, active);
+                member = new Member(name, age, active);
 
 
                 System.out.println(member);
@@ -159,7 +159,7 @@ public class Controller {
         }
     }
 
-    public MemberCompetitive2 createCompetitiveMember(String name, LocalDate age, boolean active){
+    public MemberCompetitive createCompetitiveMember(String name, LocalDate age, boolean active){
         Scanner sc = new Scanner(System.in);
         ui.printMessage("Udøvende svømmediscipliner.");
         ArrayList<Discipline> disciplines = new ArrayList<>();
@@ -192,7 +192,7 @@ public class Controller {
                 }
             }
         }
-        return new MemberCompetitive2(name, age, active, coach, disciplines);
+        return new MemberCompetitive(name, age, active, coach, disciplines);
     }
 
     public void deleteMember() {
