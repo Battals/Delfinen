@@ -6,12 +6,22 @@ import java.util.ArrayList;
 
 public class Accounting {
 
+    //Står for aflæsning af debt/gæld, og medlemmernes subscription pris, samt fremtidige betalinger
+
     private int subscription;
-    private int juniorMemberSub = 1000;
-    private int seniorMemberSub = 1600;
+    private double juniorMemberSub = 1000;
+    private double seniorMemberSub = 1600;
     private ArrayList<Member> membersDept = new ArrayList<>();
 
     public Accounting() {
+
+    }
+
+
+    public void getAge(Member member){
+        int age = LocalDate.now().compareTo(member.getAge());
+    }
+    public void registerUserContingent(Member member){
 
     }
 
