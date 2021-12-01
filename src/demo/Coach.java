@@ -3,9 +3,9 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 
-public class Coach extends Member {
+public class Coach extends user {
 
-    public class Coach e(int memberID, String name, String memberType){
+    public Coach (int memberID, String name, String memberType){
 
 
     private int coachID;
@@ -57,7 +57,7 @@ public class Coach extends Member {
                     System.out.println("På gensyn");
 
                 default:
-                    System.out.println("Pr?v igen");
+                    System.out.println("Prøv igen");
                     printMenu();
             }
         }
