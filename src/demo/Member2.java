@@ -49,4 +49,8 @@ public class Member2 {
         Random random = new Random();
         id = random.nextInt(9999);
     }
+
+    public String getData() {
+        return id + "_" + isComp + "_" + name + "_" + age + "_" + active + "_" + startDate;
+    }
 }
