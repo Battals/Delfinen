@@ -1,5 +1,6 @@
 package demo;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public class Accounting {
     }
 
 
-    public int subscriptionFee(Member members) {
+    /*public int subscriptionFee(Member members) {
         int payment = 0;
         if (members.isActive()){
             if (LocalDate.now().compareTo(members.getAge()) < 18) {
@@ -30,11 +31,12 @@ public class Accounting {
             }
         }
         return payment;
-    }
+    }*/
 
     public ArrayList<Member> getMemberDept() {
         return membersDept;
     }
+
 
 
 

@@ -62,16 +62,21 @@ public class FileHandler {
     public void removeObject(Object object){
     }
 
+    //DataReading
     public ArrayList<Member> getMembers(){
         ArrayList<String> membersData = new ArrayList<>();
+        System.out.println("get members start");
         try {
+            System.out.println("try start");
             Scanner sc = new Scanner(fileMembers);
             while(sc.hasNextLine()){
+                System.out.println("while nextline");
                 membersData.add(sc.nextLine());
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.println("ready to return");
         return getMembersToArray(membersData);
     }
     public ArrayList<Record> getRecords(){

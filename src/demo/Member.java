@@ -15,16 +15,13 @@ public class Member {
 
     //New Member
     public Member(String name, LocalDate age, boolean active) {
-        idGenerator();
         this.name = name;
         this. age = age;
         this.active = active;
         startDate = LocalDate.now();
     }
-    //new Member(name, age, active)
     //Super for Competitive
     public Member(boolean isComp, String name, LocalDate age, boolean active) {
-        idGenerator();
         this.isComp = isComp;
         this.id = id;
         this.name = name;
@@ -32,7 +29,6 @@ public class Member {
         this.active = active;
         startDate = LocalDate.now();
     }
-    //new CompetitiveMember(boolean isComp = true, String name, LocalDate age, boolean active, Coach coach, Arraylist<Discipline> disciplines)
     //Already Exists(FileHandler)
     public Member(boolean isComp, int id, String name, LocalDate age, boolean active, double debt, LocalDate startDate){
         this.isComp = isComp;
@@ -44,13 +40,33 @@ public class Member {
         this.startDate = startDate;
     }
 
-
-    private void idGenerator(){
-        Random random = new Random();
-        id = random.nextInt(9999);
+    public int getId(){
+        return id;
     }
 
-    public String getData() {
+    public String getName() {
+        return name;
+    }
+
+    public LocalDate getAge(){
+        return age;
+    }
+
+    public String getData() { //(FileHandler)
         return id + "_" + isComp + "_" + name + "_" + age + "_" + active + "_" + startDate;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "isComp=" + isComp +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", active=" + active +
+                ", debt=" + debt +
+                ", startDate=" + startDate +
+                '}';
     }
 }

@@ -1,5 +1,6 @@
 package domain;
 
+import database.FileHandler;
 import demo.*;
 import ui.Colours;
 import ui.Userinterface;
@@ -18,11 +19,16 @@ public class Controller {
     Userinterface ui = new Userinterface();
     Colours colours = new Colours();
     Accounting accounting = new Accounting();
+    FileHandler fileHandler = new FileHandler();
     public ArrayList<Coach> coaches = new ArrayList<>();
 
 
     public ArrayList<Member> memberList = new ArrayList<>();
     private ArrayList<Member> restanceList = new ArrayList<>();
+
+    public void programStart(){
+        memberList = fileHandler.getMembers();
+    }
 
 
     ArrayList<Member> membersJunior;
@@ -36,6 +42,7 @@ public class Controller {
     }
     public void start() {
         ui.printWelcome();
+        programStart();
         while (run) {
             try {
                 ui.printMenu();
@@ -110,15 +117,14 @@ public class Controller {
     }
 
     private int idGenerator(){
-        int id;
         Random random = new Random();
-        id = random.nextInt(9999);
+        int id = random.nextInt(9999);
         boolean invalid = true;
         while(invalid) {
             int duplicates = 0;
             id = random.nextInt(9999);
             for (int i = 0; i < memberList.size(); i++) {
-                if (memberList.get(i).getMemberID() == id) {
+                if (memberList.get(i).getId() == id) {
                     duplicates++;
                 }
             }
@@ -130,35 +136,25 @@ public class Controller {
     }
 
     public void createMember() {
-        Scanner sc = new Scanner(System.in);
         ui.printMessage("Fulde navn:");
-        String name = sc.nextLine();
+        String name = ui.userInput();
         ui.printMessage("Fødseldato: ");
-        LocalDate age = typeDate();
-        System.out.println("Aktivt medlemskab?");
+        LocalDate age = ui.typeDate();
+        ui.printMessage("Aktivt medlemskab?");
         boolean active = ui.yesOrNo();
         ui.printMessage("Er medlemmet konkurrence svømmer?");
         boolean isComp = ui.yesOrNo();
-
+        int id = idGenerator();
+        //(int id, String name, LocalDate age, boolean active)
         Member member;
-        if (isComp){
-            if (isComp){
-                ui.printMessage("Opretter medlem");
-                member = createCompetitiveMember(name, age, active);}
-            else {
-                ui.printMessage("Opretter motions medlem");
-                member = new Member(name, age, active);
-
-
-                System.out.println(member);
-    }}}
-
-    public void printCoaches(){
-        for (int i = 0; i < coaches.size(); i++){
-            System.out.println(coaches.get(i));
+        if(isComp) {
+            member = createCompetitiveMember(name, age, true);
+        } else {
+            member = new Member(name, age, active);
         }
+        memberList.add(member);
+        fileHandler.addObject(member);
     }
-
     public MemberCompetitive createCompetitiveMember(String name, LocalDate age, boolean active){
         Scanner sc = new Scanner(System.in);
         ui.printMessage("Udøvende svømmediscipliner.");
@@ -194,7 +190,11 @@ public class Controller {
         }
         return new MemberCompetitive(name, age, active, coach, disciplines);
     }
-
+    public void printCoaches(){
+        for (int i = 0; i < coaches.size(); i++){
+            System.out.println(coaches.get(i));
+        }
+    }
     public void deleteMember() {
         Scanner sc = new Scanner(System.in);
         boolean a = false;
@@ -202,7 +202,7 @@ public class Controller {
         System.out.println("Indtast ID på medlemmet du ønsker at slette: ");
 
         for (int i = 0; i < memberList.size(); i++) {
-            if (memberList.get(i).getMemberID() == enterDigit()) {
+            if (memberList.get(i).getId() == enterDigit()) {
                 System.out.println("Ønsker du at slette medlemmet " + memberList.get(i).getName() + "?");
                 System.out.println("Indtast - Ja/Nej");
                 String input = sc.nextLine();
@@ -239,7 +239,7 @@ public class Controller {
 
     public void getMemberNames() {
         for (int i = 0; i < memberList.size(); i++) {
-            System.out.println(colours.colourGreen("ID: " + memberList.get(i).getMemberID()) + " / Navn: " + memberList.get(i).getName());
+            System.out.println(colours.colourGreen("ID: " + memberList.get(i).getId()) + " / Navn: " + memberList.get(i).getName());
         }
     }
 

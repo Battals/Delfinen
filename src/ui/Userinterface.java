@@ -24,12 +24,12 @@ public class Userinterface {
         System.out.println(colour.colourBlue("Delfinen Svømmeklub."));
     }
 
-    public String userInputText(){
+    public String userInput(){
         return sc.nextLine();
     }
 
     public int userInputNumber(){
-        return sc.nextInt();
+        return intScanner();
     }
 
     public void printMessage(String s){
