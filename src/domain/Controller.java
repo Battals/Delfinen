@@ -22,6 +22,15 @@ public class Controller {
     FileHandler fileHandler = new FileHandler();
     public ArrayList<Coach> coaches = new ArrayList<>();
 
+    //fileHandler.addObject();
+    //hver gang et nyt objekt laves
+
+    //fileHandler.editObject();
+    //Hver gang et objekt redigeres
+
+    //fileHandler.deleteObject();
+    //Behøver vi ikke, maybe idk
+
 
     public ArrayList<Member> memberList = new ArrayList<>();
     private ArrayList<Member> restanceList = new ArrayList<>();
