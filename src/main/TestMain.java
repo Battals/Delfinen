@@ -42,6 +42,9 @@ public class TestMain {
             }
         }
 
+        AccountingSH sh = new AccountingSH();
+        System.out.println(sh.getMemberPrice(members.get(1)));
+
     }
 
     private void setMembers() {

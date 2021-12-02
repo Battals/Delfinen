@@ -72,6 +72,10 @@ public class Member {
         return age;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
     public String getData() { //(FileHandler)
         return id + "_" + isComp + "_" + name + "_" + age + "_" + active + "_" + startDate;
     }
