@@ -37,8 +37,6 @@ public class RecordResults {
         return bestTimes;
     }
 
-
-
     //Private
     private Record bestDisciplineTime(Discipline discipline, ArrayList<Record> records) {
         records = getDisciplineRecords(discipline, records);
