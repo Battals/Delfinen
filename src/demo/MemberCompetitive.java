@@ -17,6 +17,10 @@ public class MemberCompetitive extends Member {
         super(isComp, id, name, age, active, debt, startDate);
     }
 
+    public ArrayList<Discipline> getDisciplines() {
+        return disciplines;
+    }
+
     private String disciplinesGetData(){
         boolean crawl = false;
         boolean rygCrawl = false;

@@ -1,12 +1,11 @@
 package demo;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Record {
 
-    private Member holder;
-    private LocalTime time;
+    private int holder;
+    private double time;
     private LocalDate date;
     private int placement;
     private Discipline discipline;
@@ -16,7 +15,7 @@ public class Record {
     //3) En måde at se swømmerens bedste tid, inden for hver swømme diciplin, en måde at se top 5
 
     //NormalTraining
-    public Record(Member holder, LocalTime time, LocalDate date, Discipline discipline){
+    public Record(int holder, double time, LocalDate date, Discipline discipline){
         this.holder = holder;
         this.time = time;
         this.date = date;
@@ -25,12 +24,24 @@ public class Record {
     }
 
     //Competition
-    public Record(Member holder, LocalTime time, LocalDate date, Discipline discipline, int placement){
+    public Record(int holder, double time, LocalDate date, Discipline discipline, int placement){
         this.holder = holder;
         this.time = time;
         this.date = date;
         this.discipline = discipline;
         this.placement = placement;
+    }
+
+    public double getTime() {
+        return time;
+    }
+
+    public int getHolder() {
+        return holder;
+    }
+
+    public Discipline getDiscipline() {
+        return discipline;
     }
 
     public String getData(){
