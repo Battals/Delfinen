@@ -21,7 +21,8 @@ public class RecordResults {
     public ArrayList<Record> memberBestTimes(MemberCompetitive member, ArrayList<Record> records) {
         ArrayList<Record> memberRecords = getMemberRecords(member, records);
         ArrayList<Record> bestTimes = new ArrayList<>();
-        if(member.getDisciplines().contains(Discipline.CRAWL)) {
+
+        if(member.getDisciplines().get(0).equals(Discipline.CRAWL)) {
             bestTimes.add(bestDisciplineTime(Discipline.CRAWL, memberRecords));
         }
         if(member.getDisciplines().contains(Discipline.RYGCRAWL)) {
@@ -41,18 +42,24 @@ public class RecordResults {
     //Private
     private Record bestDisciplineTime(Discipline discipline, ArrayList<Record> records) {
         records = getDisciplineRecords(discipline, records);
+        if(records.isEmpty()){
+            return null;
+        }
         Record best = records.get(0);
-        for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).getDiscipline().equals(discipline)) {
-                if (best.getTime() > best.getTime()) {
-                    best = records.get(i);
+            for (int i = 0; i < records.size(); i++) {
+                if (records.get(i).getDiscipline().equals(discipline)) {
+                    if (best.getTime() > records.get(i).getTime()) {
+                        best = records.get(i);
+                    }
                 }
             }
-        }
-        return best;
+            return best;
     }
     private ArrayList<Record> getMemberRecords(Member member, ArrayList<Record> records){
         ArrayList<Record> memberRecords = new ArrayList<>();
+        if(records.isEmpty()){
+            return null;
+        }
         for(int i = 0; i < records.size(); i++){
             if(member.getId()==records.get(i).getHolder()){
                 memberRecords.add(records.get(i));
@@ -62,6 +69,9 @@ public class RecordResults {
     }
     private ArrayList<Record> getDisciplineRecords(Discipline discipline, ArrayList<Record> records){
         ArrayList<Record> disciplineRecords = new ArrayList<>();
+        if(records.isEmpty()){
+            return null;
+        }
         for(int i = 0; i < records.size(); i++){
             if(records.get(i).getDiscipline().equals(discipline)){
                 disciplineRecords.add(records.get(i));
