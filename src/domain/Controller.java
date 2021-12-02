@@ -35,7 +35,7 @@ public class Controller {
     public ArrayList<Member> memberList = new ArrayList<>();
     private ArrayList<Member> restanceList = new ArrayList<>();
 
-    public void programStart(){
+    public void programStart() {
         memberList = fileHandler.getMembers();
     }
 
@@ -43,12 +43,13 @@ public class Controller {
     ArrayList<Member> membersJunior;
     ArrayList<Member> membersSenior;
 
-    public void login(){
+    public void login() {
         String username;
         String password;
 
         //currentUser = fileHandler.registerLogin();
     }
+
     public void start() {
         ui.printWelcome();
         programStart();
@@ -75,6 +76,7 @@ public class Controller {
                         break;
                     case 6:
                         editMember();
+                        break;
                     default:
                         ui.printDefaultMessage();
                         break;
@@ -127,11 +129,11 @@ public class Controller {
         return Integer.parseInt(tekst);
     }
 
-    private int idGenerator(){
+    private int idGenerator() {
         Random random = new Random();
         int id = random.nextInt(9999);
         boolean invalid = true;
-        while(invalid) {
+        while (invalid) {
             int duplicates = 0;
             id = random.nextInt(9999);
             for (int i = 0; i < memberList.size(); i++) {
@@ -139,7 +141,7 @@ public class Controller {
                     duplicates++;
                 }
             }
-            if(duplicates==0){
+            if (duplicates == 0) {
                 invalid = false;
             }
         }
@@ -158,7 +160,7 @@ public class Controller {
         int id = idGenerator();
         //(int id, String name, LocalDate age, boolean active)
         Member member;
-        if(isComp) {
+        if (isComp) {
             member = createCompetitiveMember(name, age, true);
         } else {
             member = new Member(name, age, active);
@@ -166,6 +168,7 @@ public class Controller {
         memberList.add(member);
         fileHandler.addObject(member);
     }
+
     public MemberCompetitive createCompetitiveMember(String name, LocalDate age, boolean active) {
         Scanner sc = new Scanner(System.in);
         ui.printMessage("Udøvende svømmediscipliner.");
@@ -205,20 +208,20 @@ public class Controller {
     public void printCoaches() {
         for (int i = 0; i < coaches.size(); i++) {
             System.out.println(coaches.get(i));
-        } if (coaches.isEmpty()){
+        }
+        if (coaches.isEmpty()) {
             ui.printMessage("Der findes ingen trænere");
         }
     }
 
-        public void createCoach(){
+    public void createCoach() {
         Coach coach;
         int id = coaches.size() + 1;
         ui.printMessage("Trænerens navn:");
         String name = ui.userInput();
         coach = new Coach(id, name);
         coaches.add(coach);
-        }
-
+    }
 
 
     public void deleteMember() {
@@ -244,22 +247,54 @@ public class Controller {
 
     }
 
-    public void editMember(){
+
+    public void editMember() {
         getMemberList();
-    ui.printMessage("Indtast ID på medlemmet du ønsker at redigere.");
-    int member = ui.intScanner();
-    for (int i = 0; i < memberList.size(); i++){
-        if (memberList.get(i).getId() == member){
-            switch(ui.intScanner()){
-                case 1:
-                    ui.printMessage("Hvad skal navnet ændres til?");
-                    String name = ui.userInput();
+        //if(member instanceof CompetitiveMember)
+        ui.printMessage("Indtast ID på medlemmet du ønsker at redigere.");
+        int member = ui.intScanner();
+        for (int i = 0; i < memberList.size(); i++) {
+            if (memberList.get(i).getId() == member) {
+                ui.printMessage(memberList.get(i).toString());
+                ui.printMessage("Hvad ønsker du at ændre?");
+                ui.printMessage("""
+                        Tast 1) - For at ændre navn
+                        Tast 2) - For at ændre fødselsdagsdato 
+                        Tast 3) - For at ændre status (aktiv/passiv)""");
+                switch (ui.intScanner()) {
+                    case 1:
+                        ui.printMessage("Indtast nyt navn: ");
+                        String name = ui.userInput();
+                        memberList.get(i).setName(name);
+                        ui.printMessage("Navnet er ændret: ");
+                        fileHandler.editObject(memberList.get(i));
+                        break;
+                    case 2:
+                        ui.printMessage("Indtast ny alder: ");
+                        LocalDate alder = ui.typeDate();
+                        memberList.get(i).setAge(alder);
+                        fileHandler.editObject(memberList.get(i));
+                        ui.printMessage("Alder ændret");
+                        break;
+                    case 3:
+                        ui.printMessage("Ændre medlemmets status til aktiv - tast ja");
+                        ui.printMessage("Ændre medlemmets status til passiv - tast nej");
+                        String input = ui.userInput();
+                        if (input.equalsIgnoreCase("ja")) {
+                            memberList.get(i).setActive(true);
+                        } else if (input.equalsIgnoreCase("nej")) {
+                            memberList.get(i).setActive(false);
+                        }
+                        fileHandler.editObject(memberList.get(i));
+                        ui.printMessage("Status ændret");
+                        break;
 
 
+                }
             }
         }
     }
-    }
+
 
     public void getrestanceList() {
         for (int i = 0; i < restanceList.size(); i++) {
@@ -285,23 +320,23 @@ public class Controller {
         }
     }
 
-    public LocalDate typeDate(){
+    public LocalDate typeDate() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Fødselsår(ÅÅÅÅ): ");
         int year = sc.nextInt();
-        while(year > LocalDate.now().getYear() || year < (LocalDate.now().getYear()) - 110){
+        while (year > LocalDate.now().getYear() || year < (LocalDate.now().getYear()) - 110) {
             System.out.println("Ukendt år");
             year = sc.nextInt();
         }
         System.out.print("Fødselsmåned(MM): ");
         int month = sc.nextInt();
-        while(month > 12 || month < 1){
+        while (month > 12 || month < 1) {
             System.out.println("Ukendt måned");
             month = sc.nextInt();
         }
         System.out.println("Dag(DD): ");
         int day = sc.nextInt();
-        while(day > 31 || day < 1){
+        while (day > 31 || day < 1) {
             System.out.println("Ukendt dag");
             day = sc.nextInt();
         }

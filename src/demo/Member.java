@@ -11,6 +11,11 @@ public class Member {
 
 
     private String name;
+
+    public void setAge(LocalDate age) {
+        this.age = age;
+    }
+
     private LocalDate age;
 
 
