@@ -9,6 +9,7 @@ public class RecordResults {
     //3) En måde at se swømmerens bedste tid, inden for hver swømme diciplin, en måde at se top 5
 
 
+    //Tilføj discipline samt alle records, og du får ArrayList tilbage der har top 5: Arraynummer, 0 = 1st plads, 4 = 5th plads
     public ArrayList<Record> topFiveTimes(Discipline discipline, ArrayList<Record> records){
         records = getDisciplineRecords(discipline, records);
         ArrayList<Record> topFive = new ArrayList<>();
@@ -18,6 +19,7 @@ public class RecordResults {
         }
         return topFive;
     }
+    //Tilføj member samt alle records, og du får ArrayList tilbage der har 0-4 Records, alle hvilket er den bedste tid inden for respektive disciplin
     public ArrayList<Record> memberBestTimes(MemberCompetitive member, ArrayList<Record> records) {
         ArrayList<Record> memberRecords = getMemberRecords(member, records);
         ArrayList<Record> bestTimes = new ArrayList<>();
