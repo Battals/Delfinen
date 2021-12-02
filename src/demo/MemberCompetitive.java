@@ -15,6 +15,8 @@ public class MemberCompetitive extends Member {
     }
     public MemberCompetitive(boolean isComp, int id, String name, LocalDate age, boolean active, double debt, LocalDate startDate, Coach coach, ArrayList<Discipline> disciplines) {
         super(isComp, id, name, age, active, debt, startDate);
+        this.coach = coach;
+        this.disciplines = disciplines;
     }
 
     public ArrayList<Discipline> getDisciplines() {
@@ -51,4 +53,11 @@ public class MemberCompetitive extends Member {
     }
 
 
+    @Override
+    public String toString() {
+        return super.toString() + "MemberCompetitive{" +
+                "coach=" + coach +
+                ", disciplines=" + disciplinesGetData() +
+                '}';
+    }
 }
