@@ -44,8 +44,11 @@ public class MemberCompetitive extends Member {
         return crawl + "_" + rygCrawl + "_" + butterfly + "_" + brystswømning;
     }
 
+
     @Override
     public String getData() {
         return super.getData() + "_" + coach.getId() + "_" + disciplinesGetData();
     }
+
+
 }
