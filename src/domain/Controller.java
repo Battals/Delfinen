@@ -71,7 +71,7 @@ public class Controller {
                         deleteMember();
                         break;
                     case 5:
-                        //Vis resultater
+                        createCoach();
                         break;
                     default:
                         ui.printDefaultMessage();
@@ -164,24 +164,24 @@ public class Controller {
         memberList.add(member);
         fileHandler.addObject(member);
     }
-    public MemberCompetitive createCompetitiveMember(String name, LocalDate age, boolean active){
+    public MemberCompetitive createCompetitiveMember(String name, LocalDate age, boolean active) {
         Scanner sc = new Scanner(System.in);
         ui.printMessage("Udøvende svømmediscipliner.");
         ArrayList<Discipline> disciplines = new ArrayList<>();
         ui.printMessage("Crawl?");
-        if(ui.yesOrNo()){
+        if (ui.yesOrNo()) {
             disciplines.add(Discipline.CRAWL);
         }
         ui.printMessage("Rygcrawl?");
-        if (ui.yesOrNo()){
+        if (ui.yesOrNo()) {
             disciplines.add(Discipline.RYGCRAWL);
         }
         ui.printMessage("Butterfly?");
-        if (ui.yesOrNo()){
+        if (ui.yesOrNo()) {
             disciplines.add(Discipline.BUTTERFLY);
         }
         ui.printMessage("Brystswømning?");
-        if (ui.yesOrNo()){
+        if (ui.yesOrNo()) {
             disciplines.add(Discipline.BREASTSTROKE);
         }
         printCoaches();
@@ -189,9 +189,9 @@ public class Controller {
         int coachID = sc.nextInt();
         Coach coach = null;
         boolean invalidCoach = true;
-        while(invalidCoach) {
+        while (invalidCoach) {
             for (int i = 0; i < coaches.size(); i++) {
-                if(coachID==coaches.get(i).getId()){
+                if (coachID == coaches.get(i).getId()) {
                     coach = coaches.get(i);
                     invalidCoach = false;
                 }
@@ -199,11 +199,26 @@ public class Controller {
         }
         return new MemberCompetitive(name, age, active, coach, disciplines);
     }
-    public void printCoaches(){
-        for (int i = 0; i < coaches.size(); i++){
+
+    public void printCoaches() {
+        for (int i = 0; i < coaches.size(); i++) {
             System.out.println(coaches.get(i));
+        } if (coaches.isEmpty()){
+            ui.printMessage("Der findes ingen trænere");
         }
     }
+
+        public void createCoach(){
+        Coach coach;
+        int id = coaches.size() + 1;
+        ui.printMessage("Trænerens navn:");
+        String name = ui.userInput();
+        coach = new Coach(id, name);
+        coaches.add(coach);
+        }
+
+
+
     public void deleteMember() {
         Scanner sc = new Scanner(System.in);
         boolean a = false;

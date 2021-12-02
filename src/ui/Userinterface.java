@@ -15,7 +15,7 @@ public class Userinterface {
                 Tast 2) - Vis medlemmer.
                 Tast 3) - Vis medlemmer i restance.
                 Tast 4) - Slet medlem.
-                Tast 5) - Vis resultater.""");
+                Tast 5) - Opret træner.""");
 
 
     }
