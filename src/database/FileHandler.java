@@ -45,7 +45,7 @@ public class FileHandler {
             addData(((Record) object).getData(),fileRecords);
         }
         else {
-            System.out.println("invalid?");
+            System.out.println("invalid?(add object)");
         }
     }
     public void editObject(Object object){
@@ -56,7 +56,7 @@ public class FileHandler {
             editData(((Record) object).getData(),fileRecords);
         }
         else {
-            System.out.println("invalid?");
+            System.out.println("invalid(edit object)?");
         }
     }
     public void removeObject(Object object){
@@ -65,18 +65,14 @@ public class FileHandler {
     //DataReading
     public ArrayList<Member> getMembers(){
         ArrayList<String> membersData = new ArrayList<>();
-        System.out.println("get members start");
         try {
-            System.out.println("try start");
             Scanner sc = new Scanner(fileMembers);
             while(sc.hasNextLine()){
-                System.out.println("while nextline");
                 membersData.add(sc.nextLine());
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("ready to return");
         return getMembersToArray(membersData);
     }
     public ArrayList<Record> getRecords(){
