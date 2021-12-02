@@ -73,6 +73,8 @@ public class Controller {
                     case 5:
                         createCoach();
                         break;
+                    case 6:
+                        editMember();
                     default:
                         ui.printDefaultMessage();
                         break;
@@ -242,6 +244,22 @@ public class Controller {
 
     }
 
+    public void editMember(){
+        getMemberList();
+    ui.printMessage("Indtast ID på medlemmet du ønsker at redigere.");
+    int member = ui.intScanner();
+    for (int i = 0; i < memberList.size(); i++){
+        if (memberList.get(i).getId() == member){
+            switch(ui.intScanner()){
+                case 1:
+                    ui.printMessage("Hvad skal navnet ændres til?");
+                    String name = ui.userInput();
+
+
+            }
+        }
+    }
+    }
 
     public void getrestanceList() {
         for (int i = 0; i < restanceList.size(); i++) {

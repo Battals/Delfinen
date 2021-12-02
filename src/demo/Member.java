@@ -7,8 +7,14 @@ public class Member {
 
     private boolean isComp = false;
     private int id; //Må ikke redigeres
+
+
+
     private String name;
     private LocalDate age;
+
+
+
     private boolean active;
     private double debt;
     private LocalDate startDate;
@@ -44,8 +50,17 @@ public class Member {
         return id;
     }
 
+
     public String getName() {
         return name;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDate getAge(){
