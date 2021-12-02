@@ -136,28 +136,33 @@ public class FileHandler {
     private ArrayList<Member> getMembersToArray(ArrayList<String> data){
         ArrayList<Member> members = new ArrayList<>();
         for(int i = 0; i < data.size(); i++){
-            members.add(stringReaderMember(data.get(i)));
+            if(stringReaderMember(data.get(i))!=null) {
+                members.add(stringReaderMember(data.get(i)));
+            }
         }
         return members;
     }
     private Member stringReaderMember(String memberData){
         Member member;
-        String[] data = memberData.split("_");
-        int id = Integer.parseInt(data[0]);
-        boolean isComp = Boolean.parseBoolean(data[1]);
-        String name = data[2];
-        LocalDate age = stringReaderLocalDate(data[3]);
-        boolean active = Boolean.parseBoolean(data[4]);
-        int debt = 0;
-        LocalDate startDate = stringReaderLocalDate(data[5]);
-        if(isComp){
-            Coach coach = findCoach(data[6]);
-            ArrayList<Discipline> disciplines = stringReaderDisciplines(data[7], data[8], data[9], data[10]);
-            member = new MemberCompetitive(true, id, name, age, active, debt, startDate, coach, disciplines);
-        } else {
-            member = new Member(false, id, name, age, active, debt, startDate);
-        }
-        return member;
+        try {
+            String[] data = memberData.split("_");
+            int id = Integer.parseInt(data[0]);
+            boolean isComp = Boolean.parseBoolean(data[1]);
+            String name = data[2];
+            LocalDate age = stringReaderLocalDate(data[3]);
+            boolean active = Boolean.parseBoolean(data[4]);
+            int debt = 0;
+            LocalDate startDate = stringReaderLocalDate(data[5]);
+            if (isComp) {
+                Coach coach = findCoach(data[6]);
+                ArrayList<Discipline> disciplines = stringReaderDisciplines(data[7], data[8], data[9], data[10]);
+                member = new MemberCompetitive(true, id, name, age, active, debt, startDate, coach, disciplines);
+            } else {
+                member = new Member(false, id, name, age, active, debt, startDate);
+            }
+            return member;
+        } catch (ArrayIndexOutOfBoundsException ignored){}
+        return null;
     }
     private Record stringReaderRecord(String recordData){
         return null;
