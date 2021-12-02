@@ -4,11 +4,6 @@ import java.util.ArrayList;
 
 public class RecordResults {
 
-    //1) Hver swømmers bedste resultat inden for hver swømmediciplin; Klasse?
-    //2) Træneren har oversigt, og kan se top 5 swømmere inden for hver swømmediciplin, fordelt senior og junior
-    //3) En måde at se swømmerens bedste tid, inden for hver swømme diciplin, en måde at se top 5
-
-
     //Tilføj discipline samt alle records, og du får ArrayList tilbage der har top 5: Arraynummer, 0 = 1st plads, 4 = 5th plads
     public ArrayList<Record> topFiveTimes(Discipline discipline, ArrayList<Record> records){
         records = getDisciplineRecords(discipline, records);
