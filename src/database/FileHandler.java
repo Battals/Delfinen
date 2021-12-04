@@ -34,7 +34,8 @@ public class FileHandler {
 
     //CONTINGENT???:
     //evt. int værdi i member, antal måneder der er blevet betalt for
-    //Overall Status, int activeMonths, int inactiveMonths, int comp
+    //Overall Status, int activeMonths, int inactiveMonths, int comp, hvert år tilføjes der debt?
+    //HOLDERID_PAYMENT(Sletter payments når debt er 0?)
 
     //DataHandling
     public void addObject(Object object){

@@ -79,6 +79,10 @@ public class Member {
     public void addDebt(double amount){
         debt += amount;
     }
+    public double removeDebt(double amount){
+        debt += amount;
+        return debt;
+    }
 
     public String getData() { //(FileHandler)
         return id + "_" + isComp + "_" + name + "_" + age + "_" + active + "_" + startDate;
