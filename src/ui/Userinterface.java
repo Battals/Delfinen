@@ -20,6 +20,10 @@ public class Userinterface {
 
     }
 
+    public void newLine(){
+        System.out.println("\n");
+    }
+
     public void printWelcome(){
         System.out.println(colour.colourBlue("Delfinen Svømmeklub."));
     }

@@ -22,6 +22,11 @@ public class User {
     public User() {
     }
 
+    @Override
+    public String toString() {
+        return user + " : " + password;
+    }
+
     public boolean login(){
         Scanner login = new Scanner(System.in);
         String userName;
@@ -37,25 +42,29 @@ public class User {
         userPassword = login.nextLine();
 
         for (User user : users){
-            if (user.users.equals(userName) && user.password.equals(userPassword)){
+            if (user.user.equals(userName) && user.password.equals(userPassword)){
                 ui.printMessage("Du er nu logget in " + userName);
                 completed = true;
+                break;
+                }
             }
-        }
-
-        if (completed == false){
+        if (!completed){
             ui.printMessage("Forkert brugernavn eller kode!");
         }
         return completed;
     }
 
     public void usersLogin(){
-        User admin = new User("admin", "admin");
-        User accounting = new User("accounting", "accounting");
-        User coach = new User("coach", "1234");
+        User Chairman;
+        User Accounting;
+        User Coach;
 
-        users.add(admin);
-        users.add(accounting);
-        users.add(coach);
+        Chairman = new User("admin", "1234");
+        Accounting = new User("acc", "1234");
+        Coach = new User("coach", "1234");
+
+        users.add(Chairman);
+        users.add(Accounting);
+        users.add(Coach);
     }
 }

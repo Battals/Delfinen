@@ -1,6 +1,7 @@
 package demo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Member {
@@ -18,11 +19,18 @@ public class Member {
 
     private LocalDate age;
 
+    MemberList memberList = new MemberList();
 
 
     private boolean active;
     private double debt;
     private LocalDate startDate;
+    private int pay;
+
+    int max = 1000;
+    int min = 0;
+
+    ArrayList<Member> listOfMember = new ArrayList<>();
 
     //New Member
     public Member(String name, LocalDate age, boolean active) {
@@ -55,6 +63,24 @@ public class Member {
         return id;
     }
 
+    private int idGenerator() {
+        Random random = new Random();
+        int id = random.nextInt(9999);
+        boolean invalid = true;
+        while (invalid) {
+            int duplicates = 1;
+            id = random.nextInt(9999);
+            for (int i = 0; i < memberList.getMembers().size(); i++) {
+                if (memberList.getMembers().get(i).getId() == id) {
+                    duplicates++;
+                }
+            }
+            if (duplicates == 0) {
+                invalid = false;
+            }
+        }
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -74,6 +100,10 @@ public class Member {
 
     public boolean isActive() {
         return active;
+    }
+
+    public int getPay() {
+        return pay;
     }
 
     public void addDebt(double amount){

@@ -18,9 +18,12 @@ public class Controller {
     User currentUser;
     Userinterface ui = new Userinterface();
     Colours colours = new Colours();
-    Accounting accounting = new Accounting();
+
     FileHandler fileHandler = new FileHandler();
     public ArrayList<Coach> coaches = new ArrayList<>();
+
+
+    User user = new User();
 
     //fileHandler.addObject();
     //hver gang et nyt objekt laves
@@ -52,8 +55,30 @@ public class Controller {
 
     public void start() {
         ui.printWelcome();
-        programStart();
+        MemberList.programStart();
+        user.usersLogin();
+            while (true) {
+                if (user.login()) break;
+
+            }
+            accountControl();
+            chairmanControl();
+
+    }
+
+    /*public void start() {
+        ui.printWelcome();
+        MemberList.programStart();
+        user.usersLogin();
+
+
         while (run) {
+            while (user.login() == false){
+
+            }
+
+            chairmanControl();
+            accountControl();
             try {
                 ui.printMenu();
                 switch (ui.userInputNumber()) {
@@ -65,7 +90,8 @@ public class Controller {
                         getMemberList();
                         break;
                     case 3:
-                        getrestanceList();
+                        //getrestanceList();
+                        accountControl();
                         break;
                     case 4:
                         getMemberNames();
@@ -88,9 +114,59 @@ public class Controller {
                 System.out.println("Ukendt tegn");
             }
         }
+    }*/
+
+    public void chairmanControl() {
+        Chairman chairman = new Chairman("admin", "1234");
+        while (run) {
+            chairman.chairmanMenu();
+            switch (ui.userInputNumber()) {
+                case 1 -> chairman.createMember();
+                case 2 -> chairman.getMemberList();
+                case 3 -> chairman.deleteMember();
+                case 4 -> chairman.editMember();
+                case 9 -> {
+                    ui.printMessage("Logger ud");
+                    start();
+                }
+                case 0 -> System.exit(0);
+                default -> System.out.println("Ukendt tegn!");
+            }
+        }
     }
 
-    public void distributeMembers(ArrayList<Member> members) {
+    public void accountControl() {
+        Accounting accounting = new Accounting("acc", "1234");
+        while (run) {
+            accounting.accountMenu();
+            switch (ui.userInputNumber()) {
+                case 1:
+                    //Overblik over inkomst til klubben
+                    //instance of Accountant("Hello welcome")
+                    // else { "Only for accountants" }
+
+                    break;
+                case 2:
+                    //Se listen over medlemmer der i restance
+                    accounting.printDebtors();
+                    break;
+                case 3:
+                    //Se listen over priserne
+                    accounting.subscriptionPrint();
+                    break;
+                case 9:
+                    ui.printMessage("Logger ud");
+                    start();
+                    break;
+                case 0:
+                    System.exit(0);
+                default:
+                    System.out.println("Ukendt tegn!");
+            }
+        }
+    }
+
+    /*public void distributeMembers(ArrayList<Member> members) {
         for (int i = 0; i < members.size(); i++) {
             if (LocalDate.now().compareTo(members.get(i).getAge()) >= 18) {
                 membersSenior.add(members.get(i));
@@ -103,24 +179,6 @@ public class Controller {
 
     public void holdopdeler(ArrayList<Member> members) {
 
-    }
-
-    public void accountControl() {
-        while (run) {
-            switch (ui.userInputNumber()) {
-                case 1:
-                    //Overblik over inkomst til klubben
-                    //instance of Accountant("Hello welcome")
-                    // else { "Only for accountants" }
-                    break;
-                case 2:
-                    //Se listen over medlemmer der i restance
-                    break;
-                case 3:
-                    //Se listen over priserne
-                    break;
-            }
-        }
     }
 
     private int enterDigit() {
@@ -342,7 +400,7 @@ public class Controller {
         }
 
         return LocalDate.of(year, month, day);
-    }
+    }*/
 
 
 }
