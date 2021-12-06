@@ -9,3 +9,6 @@
 0_false_Frank Hansen_1979-03-03_true_2021-12-05
 0_false_ingrid hansen_1962-03-05_true_2021-12-06
 0_false_inger mikkelsen_1955-02-05_true_2021-12-06
+0_false_Battal Roni ØZCAN_2001-05-04_true_2021-12-06
+0_true_aaa_2001-05-04_true_2021-12-06_1_false_false_false_false
+0_true_Kasper jeNSEN_1997-05-03_true_2021-12-06_1_false_true_false_true

@@ -37,6 +37,8 @@ public class Controller {
 
     public ArrayList<Member> memberList = new ArrayList<>();
     private ArrayList<Member> restanceList = new ArrayList<>();
+    private ArrayList<Member> youthList = new ArrayList<>();
+    private ArrayList<Member> seniorList = new ArrayList<>();
 
     public void programStart() {
         memberList = fileHandler.getMembers();
@@ -84,8 +86,12 @@ public class Controller {
                 ui.printMenu();
                 switch (ui.userInputNumber()) {
                     case 1:
-                        createMember();
-                        System.out.println("Medlem oprettet");
+                        login();
+                        chairmanMenu
+
+
+                        //createMember();
+                        //System.out.println("Medlem oprettet");
                         break;
                     case 2:
                         getMemberList();
@@ -126,6 +132,7 @@ public class Controller {
                 case 2 -> chairman.getMemberList();
                 case 3 -> chairman.deleteMember();
                 case 4 -> chairman.editMember();
+                case 5 -> chairman.createCoach();
                 case 9 -> {
                     ui.printMessage("Logger ud");
                     start();
@@ -221,6 +228,11 @@ public class Controller {
         Member member;
         if (isComp) {
             member = createCompetitiveMember(name, age, true);
+            if (age.getYear() <= 2003) {
+                youthList.add(member);
+            } else {
+                seniorList.add(member);
+            }
         } else {
             member = new Member(name, age, active);
         }
@@ -261,8 +273,11 @@ public class Controller {
                 }
             }
         }
+
         return new MemberCompetitive(name, age, active, coach, disciplines);
+
     }
+
 
     public void printCoaches() {
         for (int i = 0; i < coaches.size(); i++) {

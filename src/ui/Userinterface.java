@@ -11,11 +11,10 @@ public class Userinterface {
     public void printMenu() {
         System.out.println("""
                 
-                Tast 1) - Opret nyt medlem.
-                Tast 2) - Vis medlemmer.
-                Tast 3) - Vis medlemmer i restance.
-                Tast 4) - Slet medlem.
-                Tast 5) - Opret træner.""");
+                1) - Formand.
+                2) - Kasser.
+                3) - Træner.
+                .""");
 
 
     }

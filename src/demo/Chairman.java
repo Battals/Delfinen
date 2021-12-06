@@ -18,6 +18,7 @@ public class Chairman extends User{
 
     public ArrayList<Coach> coaches = new ArrayList<>();
 
+
     public Chairman(String user, String password) {
         super(user, password);
     }
@@ -25,10 +26,11 @@ public class Chairman extends User{
     public void chairmanMenu(){
         ui.printMessage("""
                 
-                Tast 1) - Opret Medlem
-                Tast 2) - Vis Medlem
-                Tast 3) - Slet Medlem
-                Tast 4) - Ændre Medlem
+                Tast 1) - Opret Medlem.
+                Tast 2) - Vis Medlem.
+                Tast 3) - Slet Medlem.
+                Tast 4) - Ændre Medlem.
+                Tast 5) - Opret træner.
                 Tast 9) - Log ud
                 Tast 0) - Slut program""");
     }
@@ -75,7 +77,7 @@ public class Chairman extends User{
         if (ui.yesOrNo()) {
             disciplines.add(Discipline.BREASTSTROKE);
         }
-        //printCoaches();
+        printCoaches();
         ui.printMessage("Vælg en træner ");
         int coachID = sc.nextInt();
         Coach coach = null;
@@ -85,6 +87,10 @@ public class Chairman extends User{
                 if (coachID == coaches.get(i).getId()) {
                     coach = coaches.get(i);
                     invalidCoach = false;
+                }
+                else if (coachID != coaches.get(i).getId()){
+                    ui.printMessage("Ukendt ID");
+                    break;
                 }
             }
         }
@@ -99,6 +105,24 @@ public class Chairman extends User{
             System.out.println("Der findes ingen medlemmer");
         }
     }
+
+    public void createCoach() {
+        Coach coach;
+        int id = coaches.size() + 1;
+        ui.printMessage("Trænerens navn:");
+        String name = ui.userInput();
+        coach = new Coach(id, name);
+        coaches.add(coach);
+    }
+
+    public void printCoaches(){
+        if (coaches.isEmpty()){
+            System.out.println("Der findes ingen trænere.");
+        } else {
+        System.out.println(coaches);
+        }
+    }
+
 
     public void deleteMember() {
         Scanner sc = new Scanner(System.in);
