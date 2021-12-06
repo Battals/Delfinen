@@ -61,8 +61,9 @@ public class Controller {
                 if (user.login()) break;
 
             }
-            accountControl();
+
             chairmanControl();
+        accountControl();
 
     }
 

@@ -63,7 +63,7 @@ public class Member {
         return id;
     }
 
-    private int idGenerator() {
+    public int idGenerator(Member member) {
         Random random = new Random();
         int id = random.nextInt(9999);
         boolean invalid = true;

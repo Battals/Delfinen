@@ -52,6 +52,7 @@ public class Chairman extends User{
         }
         memberList.getMembers().add(member);
         fileHandler.addObject(member);
+        ui.printMessage("Bruger oprettet: " + member);
     }
 
     public MemberCompetitive createCompetitiveMember(String name, LocalDate age, boolean active) {
