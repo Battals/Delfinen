@@ -20,6 +20,7 @@ public class User {
         this.password = password;
     }
 
+
     public User() {
     }
 
@@ -44,7 +45,6 @@ public class User {
 
         for (User user : users){
             if (user.user.equals(userName) && user.password.equals(userPassword)){
-                ui.printMessage("Du er nu logget in " + userName);
                 completed = true;
                 return user;
                 }
@@ -52,7 +52,6 @@ public class User {
         if (!completed){
             ui.printMessage("Forkert brugernavn eller kode!");
         }
-        System.out.println(user);
         return user;
     }
 
@@ -69,4 +68,5 @@ public class User {
         users.add(accountControl);
         //users.add(Coach);
     }
+
 }

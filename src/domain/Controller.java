@@ -60,15 +60,13 @@ public class Controller {
         MemberList.programStart();
         user.usersLogin();
         Object loginUser = user.login();
-        //System.out.println(Accounting.class.isInstance(user.login()));
-        //System.out.println(user.login().toString() + "testt");
         while (true) {
-
             if (Chairman.class.isInstance(loginUser)) {
+                ui.printMessage(colours.colourWhite("Du er nu logget ind som Formand."));
                 chairmanControl();
                 break;
             } else if (Accounting.class.isInstance(loginUser)) {
-                System.out.println("in here");
+                ui.printMessage(colours.colourWhite("Du er nu logget ind som Kasserer."));
                 accountControl();
                 break;
             }
