@@ -3,6 +3,7 @@ package demo;
 import ui.Userinterface;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class User {
@@ -27,7 +28,7 @@ public class User {
         return user + " : " + password;
     }
 
-    public boolean login(){
+    public Object login(){
         Scanner login = new Scanner(System.in);
         String userName;
         String userPassword;
@@ -45,13 +46,14 @@ public class User {
             if (user.user.equals(userName) && user.password.equals(userPassword)){
                 ui.printMessage("Du er nu logget in " + userName);
                 completed = true;
-                break;
+                return user;
                 }
             }
         if (!completed){
             ui.printMessage("Forkert brugernavn eller kode!");
         }
-        return completed;
+        System.out.println(user);
+        return user;
     }
 
     public void usersLogin(){
@@ -59,12 +61,12 @@ public class User {
         User Accounting;
         User Coach;
 
-        Chairman = new User("admin", "1234");
-        Accounting = new User("acc", "1234");
-        Coach = new User("coach", "1234");
+        Chairman chairmanAccount = new Chairman("admin", "1234");
+        Accounting accountControl = new Accounting("acc", "1234");
+        //Coach coachControl = new Coach("coach", "1234");
 
-        users.add(Chairman);
-        users.add(Accounting);
-        users.add(Coach);
+        users.add(chairmanAccount);
+        users.add(accountControl);
+        //users.add(Coach);
     }
 }
