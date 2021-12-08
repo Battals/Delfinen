@@ -87,6 +87,10 @@ public class Member {
         return name;
     }
 
+    public double getDebt() {
+        return debt;
+    }
+
     public void setActive(boolean active) {
         this.active = active;
     }
