@@ -46,6 +46,7 @@ public class Accounting extends User {
         for (Member member : MemberList.debitors()) {
             if(member.getDebt()<0){
                 System.out.println(member);
+                //
             }
         }
     }
