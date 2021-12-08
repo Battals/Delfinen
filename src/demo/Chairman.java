@@ -109,8 +109,8 @@ public class Chairman extends User{
         int id = coaches.size() + 1;
         ui.printMessage("Trænerens navn:");
         String name = ui.userInput();
-        coach = new Coach(id, name);
-        coaches.add(coach);
+        //coach = new Coach(id, name);
+        //coaches.add(coach);
     }
 
     public void printCoaches(){

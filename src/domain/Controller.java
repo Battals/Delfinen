@@ -69,6 +69,9 @@ public class Controller {
                 ui.printMessage(colours.colourWhite("Du er nu logget ind som Kasserer."));
                 accountControl();
                 break;
+            } else if (Coach.class.isInstance(loginUser)){
+                ui.printMessage(colours.colourWhite("Du er nu logget ind som Træner"));
+                coachControl();
             }
 
         }
@@ -151,8 +154,40 @@ public class Controller {
 
     public void accountControl() {
         Accounting accounting = new Accounting("acc", "1234");
+        AccountingSH accountingSH = new AccountingSH();
         while (run) {
             accounting.accountMenu();
+            switch (ui.userInputNumber()) {
+                case 1:
+                    //Overblik over inkomst til klubben
+                    //instance of Accountant("Hello welcome")
+                    // else { "Only for accountants" }
+                    accountingSH.annualPay();
+                    break;
+                case 2:
+                    //Se listen over medlemmer der i restance
+                    accounting.printDebtors();
+                    break;
+                case 3:
+                    //Se listen over priserne
+                    accounting.subscriptionPrint();
+                    break;
+                case 9:
+                    ui.printMessage("Logger ud");
+                    start();
+                    break;
+                case 0:
+                    System.exit(0);
+                default:
+                    System.out.println("Ukendt tegn!");
+            }
+        }
+    }
+
+    public void coachControl(){
+        Coach coach = new Coach("coach","1234");
+        while (run) {
+
             switch (ui.userInputNumber()) {
                 case 1:
                     //Overblik over inkomst til klubben
@@ -162,11 +197,11 @@ public class Controller {
                     break;
                 case 2:
                     //Se listen over medlemmer der i restance
-                    accounting.printDebtors();
+
                     break;
                 case 3:
                     //Se listen over priserne
-                    accounting.subscriptionPrint();
+
                     break;
                 case 9:
                     ui.printMessage("Logger ud");
