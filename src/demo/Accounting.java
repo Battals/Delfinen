@@ -11,10 +11,10 @@ public class Accounting extends User {
     //Står for aflæsning af debt/gæld, og medlemmernes subscription pris, samt fremtidige betalinger
 
     private int subscription;
-    private double juniorMemberSub = 1000;
-    private double seniorMemberSub = 1600;
-    private double pensionMemberSub = (1600 * 25) / 100;
-    private double passivMemberSub = 500;
+    double inactive = 500;
+    double under18 = 1000;
+    double over18 = 1600;
+    double over60 = 1600 * 0.75;
     private ArrayList<Member> membersDept = new ArrayList<>();
 
     Userinterface ui = new Userinterface();
@@ -35,10 +35,10 @@ public class Accounting extends User {
 
     public void subscriptionPrint(){
         ui.printMessage("Kontingent priser:" + System.lineSeparator() +
-                "  - Junior pris: " + juniorMemberSub + System.lineSeparator() +
-                "  - Senior pris: " + seniorMemberSub + System.lineSeparator() +
-                "  - Pensionister: " + pensionMemberSub + System.lineSeparator() +
-                "  - Passive svømmere: " + passivMemberSub);
+                "  - Junior pris: " + under18 + System.lineSeparator() +
+                "  - Senior pris: " + over18 + System.lineSeparator() +
+                "  - Pensionister: " + over60 + System.lineSeparator() +
+                "  - Passive svømmere: " + inactive);
     }
 
     public void printDebtors()
@@ -51,12 +51,53 @@ public class Accounting extends User {
         }
     }
 
+    //PaymentHandling
+    public void addMonthlyDebt(Member member){
+        member.addDebt(getMemberPrice(member));
+    }
+    public void addMonthlyDebtALL(ArrayList<Member> members){
+        for(Member member : members) {
+            member.addDebt(getMemberPrice(member));
+        }
+    }
+    public void payDebt(Member member, double amount){
+        double newDebt = member.removeDebt(amount);
+        System.out.println("new debt: " + newDebt);
+    }
+    public void printMonthlyIncome(ArrayList<Member> members){
+        double monthlyIncome = 0;
+        for(int i = 0; i < members.size(); i++){
+            monthlyIncome += getMemberPrice(members.get(i));
+        }
+        System.out.println("Hvert år forventes der at få: " + monthlyIncome + "kr.");
+    }
+    //PaymentCalculating
+    public double getMemberPrice(Member member) {
+        if(!member.isActive()){
+            return inactive;
+        }
+        int age = LocalDate.now().compareTo(LocalDate.of(1999,7,29));
+        if(age < 18 && age > 0){
+            return under18;
+        } else if(age < 60){
+            return over18;
+        } else if(age > 65){
+            return over60;
+        } else {
+            return 0;
+        }
+    }
+    public double calculateContingent(ArrayList<Member> members) {
+        double result = 0;
+        for(int i = 0; i < members.size(); i++){
+            result += getMemberPrice(members.get(i));
+        }
+        return result;
+    }
+
 
     public void getAge(Member member){
         int age = LocalDate.now().compareTo(member.getAge());
-    }
-    public void registerUserContingent(Member member){
-
     }
 
 

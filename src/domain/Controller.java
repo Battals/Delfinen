@@ -58,6 +58,7 @@ public class Controller {
     public void start() {
         ui.printWelcome();
         MemberList.programStart();
+        programStart();
         user.usersLogin();
         Object loginUser = user.login();
         while (true) {
@@ -162,7 +163,7 @@ public class Controller {
                     //Overblik over inkomst til klubben
                     //instance of Accountant("Hello welcome")
                     // else { "Only for accountants" }
-                    accountingSH.annualPay();
+                    accounting.printMonthlyIncome(memberList);
                     break;
                 case 2:
                     //Se listen over medlemmer der i restance

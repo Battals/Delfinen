@@ -29,14 +29,17 @@ For passivt medlemskab er taksten 500 kr. årligt.
             member.addDebt(getMemberPrice(member));
         }
     }
-
     public void payDebt(Member member, double amount){
         double newDebt = member.removeDebt(amount);
         System.out.println("new debt: " + newDebt);
-
     }
-
-
+    public void printMonthlyIncome(ArrayList<Member> members){
+        double monthlyIncome = 0;
+        for (Member member : members){
+            monthlyIncome += getMemberPrice(member);
+        }
+        System.out.println("Hver måned forventes der at få: " + monthlyIncome);
+    }
     //PaymentCalculating
     public double getMemberPrice(Member member) {
         if(!member.isActive()){
@@ -60,8 +63,6 @@ For passivt medlemskab er taksten 500 kr. årligt.
         }
         return result;
     }
-
-
     public void annualPay(){
         for (Member member : memberList.getMembers()){
             getMemberPrice(member);
