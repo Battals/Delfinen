@@ -155,7 +155,6 @@ public class Controller {
 
     public void accountControl() {
         Accounting accounting = new Accounting("acc", "1234");
-        AccountingSH accountingSH = new AccountingSH();
         while (run) {
             accounting.accountMenu();
             switch (ui.userInputNumber()) {
