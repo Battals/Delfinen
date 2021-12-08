@@ -20,7 +20,7 @@ public class Userinterface {
         return intScanner();
     }
 
-    public void printSOUT(Object object){
+    public void printObject(Object object){
         System.out.println(object);
     }
 

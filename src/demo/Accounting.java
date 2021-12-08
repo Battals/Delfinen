@@ -33,17 +33,17 @@ public class Accounting extends User {
     }
 
     public void subscriptionPrint() {
-        ui.printMessage("Kontingent priser:" + System.lineSeparator() +
-                "  - Junior pris: " + under18 + System.lineSeparator() +
-                "  - Senior pris: " + over18 + System.lineSeparator() +
-                "  - Pensionister: " + over60 + System.lineSeparator() +
-                "  - Passive svømmere: " + inactive);
+        ui.printMessage("Kontingent priser:" + " kr." +    System.lineSeparator() +
+                "  - Junior pris:      " + under18 + " kr." + System.lineSeparator() +
+                "  - Senior pris:      " + over18 + " kr." +  System.lineSeparator() +
+                "  - Pensionister:     " + over60 + " kr." +  System.lineSeparator() +
+                "  - Passive svømmere: " + inactive + "  kr.");
     }
 
     public void printDebtors() {
         for (Member member : MemberList.debitors()) {
             if (member.getDebt() < 0) {
-                ui.printSOUT(member);
+                ui.printObject(member);
             }
         }
     }
@@ -61,7 +61,7 @@ public class Accounting extends User {
 
     public void payDebt(Member member, double amount) {
         double newDebt = member.removeDebt(amount);
-        ui.printSOUT("new debt" + newDebt);
+        ui.printObject("new debt" + newDebt);
     }
 
     public void printMonthlyIncome(ArrayList<Member> members) {
@@ -69,7 +69,7 @@ public class Accounting extends User {
         for (int i = 0; i < members.size(); i++) {
             monthlyIncome += getMemberPrice(members.get(i));
         }
-        ui.printSOUT("Hvert år forventes der at få: " + monthlyIncome + "kr.");
+        ui.printObject("Hvert år forventes der at få: " + monthlyIncome + " kr.");
     }
 
     //PaymentCalculating

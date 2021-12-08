@@ -95,7 +95,7 @@ public class Chairman extends User {
 
     public void getMemberList() {
         for (int i = 0; i < memberList.getMembers().size(); i++) {
-            ui.printSOUT(memberList.getMembers().get(i));
+            ui.printObject(memberList.getMembers().get(i));
         }
         if (memberList.getMembers().isEmpty()) {
             ui.printMessage("Der findes ingen medlemmer");
@@ -115,7 +115,7 @@ public class Chairman extends User {
         if (coaches.isEmpty()) {
             ui.printMessage("Der findes ingen trænere.");
         } else {
-            ui.printSOUT(coaches);
+            ui.printObject(coaches);
         }
     }
 
