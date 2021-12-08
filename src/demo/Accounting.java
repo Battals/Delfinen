@@ -53,11 +53,11 @@ public class Accounting extends User {
 
     //PaymentHandling
     public void addMonthlyDebt(Member member){
-        member.addDebt(getMemberPrice(member));
+        member.addDebt(-getMemberPrice(member));
     }
     public void addMonthlyDebtALL(ArrayList<Member> members){
         for(Member member : members) {
-            member.addDebt(getMemberPrice(member));
+            member.addDebt(-getMemberPrice(member));
         }
     }
     public void payDebt(Member member, double amount){
