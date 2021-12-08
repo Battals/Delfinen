@@ -171,11 +171,11 @@ public class FileHandler {
             String name = data[2];
             LocalDate age = stringReaderLocalDate(data[3]);
             boolean active = Boolean.parseBoolean(data[4]);
-            int debt = 0;
             LocalDate startDate = stringReaderLocalDate(data[5]);
+            double debt = Double.parseDouble(data[6]);
             if (isComp) {
-                Coach coach = findCoach(data[6]);
-                ArrayList<Discipline> disciplines = stringReaderDisciplines(data[7], data[8], data[9], data[10]);
+                Coach coach = findCoach(data[7]);
+                ArrayList<Discipline> disciplines = stringReaderDisciplines(data[8], data[9], data[10], data[11]);
                 member = new MemberCompetitive(true, id, name, age, active, debt, startDate, coach, disciplines);
             } else {
                 member = new Member(false, id, name, age, active, debt, startDate);

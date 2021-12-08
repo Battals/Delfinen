@@ -120,7 +120,7 @@ public class Member {
     }
 
     public String getData() { //(FileHandler)
-        return id + "_" + isComp + "_" + name + "_" + age + "_" + active + "_" + startDate;
+        return id + "_" + isComp + "_" + name + "_" + age + "_" + active + "_" + startDate + "_" + debt;
     }
 
 
