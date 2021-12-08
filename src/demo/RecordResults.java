@@ -42,10 +42,10 @@ public class RecordResults {
             return null;
         }
         Record best = records.get(0);
-        for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).getDiscipline().equals(discipline)) {
-                if (best.getTime() > records.get(i).getTime()) {
-                    best = records.get(i);
+        for (Record record : records) {
+            if (record.getDiscipline().equals(discipline)) {
+                if (best.getTime() > record.getTime()) {
+                    best = record;
                 }
             }
         }
@@ -57,9 +57,9 @@ public class RecordResults {
         if (records.isEmpty()) {
             return null;
         }
-        for (int i = 0; i < records.size(); i++) {
-            if (member.getId() == records.get(i).getHolder()) {
-                memberRecords.add(records.get(i));
+        for (Record record : records) {
+            if (member.getId() == record.getHolder()) {
+                memberRecords.add(record);
             }
         }
         return memberRecords;
@@ -70,9 +70,9 @@ public class RecordResults {
         if (records.isEmpty()) {
             return null;
         }
-        for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).getDiscipline().equals(discipline)) {
-                disciplineRecords.add(records.get(i));
+        for (Record record : records) {
+            if (record.getDiscipline().equals(discipline)) {
+                disciplineRecords.add(record);
             }
         }
         return disciplineRecords;

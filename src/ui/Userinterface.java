@@ -8,19 +8,11 @@ public class Userinterface {
     Scanner sc = new Scanner(System.in);
     Colours colour = new Colours();
 
-    public void printWelcome() {
-        System.out.println(colour.colourBlue("Delfinen Svømmeklub."));
-    }
-
-    public String userInput() {
-        return sc.nextLine();
-    }
-
     public int userInputNumber() {
         return intScanner();
     }
 
-    public void printSOUT(Object object){
+    public void printObject(Object object){
         System.out.println(object);
     }
 
@@ -28,14 +20,22 @@ public class Userinterface {
         System.out.println(s);
     }
 
+    public void printWelcome() {
+        printMessage(colour.colourBlue("Delfinen Svømmeklub."));
+    }
+
     public void printDefaultMessage() {
-        System.out.println("Ukendt kommando");
+        printMessage("Ukendt kommando");
+    }
+
+    public String userInput() {
+        return sc.nextLine();
     }
 
     public int intScanner() {
         String input = sc.nextLine();
         while (!input.matches("\\d+")) {
-            System.out.print("please type a number: ");
+            printMessage("please type a number: ");
             input = sc.nextLine();
         }
         return Integer.parseInt(input);
@@ -67,10 +67,10 @@ public class Userinterface {
 
     public boolean yesOrNo() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Ja/Nej");
+        printMessage("Ja/Nej");
         String answer = sc.nextLine().toLowerCase();
         while (!answer.equals("ja") && !answer.equals("nej")) {
-            System.out.println("Skriv venligt 'ja' eller 'nej'");
+            printMessage("Skriv venligt 'ja' eller 'nej'");
             answer = sc.nextLine();
         }
         return answer.equals("ja");

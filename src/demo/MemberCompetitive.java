@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class MemberCompetitive extends Member {
 
-    private Coach coach;
-    private ArrayList<Discipline> disciplines;
+    private final Coach coach;
+    private final ArrayList<Discipline> disciplines;
 
     public MemberCompetitive(int id, String name, LocalDate age, boolean active, Coach coach, ArrayList<Discipline> disciplines) {
         super(id, true, name, age, active);
@@ -29,8 +29,7 @@ public class MemberCompetitive extends Member {
         boolean rygCrawl = false;
         boolean butterfly = false;
         boolean brystswømning = false;
-        for (int i = 0; i < disciplines.size(); i++) {
-            Discipline discipline = disciplines.get(i);
+        for (Discipline discipline : disciplines) {
             if (discipline == Discipline.CRAWL) {
                 crawl = true;
             }

@@ -29,15 +29,15 @@ public class Controller {
         user.usersLogin();
         Object loginUser = user.login();
         while (run) {
-            if (Chairman.class.isInstance(loginUser)) {
+            if (loginUser instanceof Chairman) {
                 ui.printMessage(colours.colourWhite("Du er nu logget ind som Formand."));
                 chairmanControl();
                 break;
-            } else if (Accounting.class.isInstance(loginUser)) {
+            } else if (loginUser instanceof Accounting) {
                 ui.printMessage(colours.colourWhite("Du er nu logget ind som Kasserer."));
                 accountControl();
                 break;
-            } else if (Coach.class.isInstance(loginUser)){
+            } else if (loginUser instanceof Coach){
                 ui.printMessage(colours.colourWhite("Du er nu logget ind som Træner"));
                 coachControl();
             } else if (loginUser == null){

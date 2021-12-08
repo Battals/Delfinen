@@ -1,8 +1,8 @@
-1_false_Ahsan Iqbal_2000-07-10_true_2021-12-05_-1000
+1_false_Ahsan Iqbal_2000-07-10_true_2021-12-05_-1600
 2_false_Jack Black_1999-07-29_true_2021-12-02_0
 3_false_Hassan Mand_1999-07-11_true_2021-12-05_0
 4_false_Ahsan Iqbal_1999-07-11_true_2021-12-05_0
-5_false_Hans Adam_1952-01-01_true_2021-12-05_0
+5_false_Hans Adam_1952-01-01_true_2021-12-05_-500
 6_false_Mikkel Hansen_1972-12-12_true_2021-12-05_0
 7_false_Lars Andersen_1962-05-05_true_2021-12-05_0
 8_false_Inger Mikkelsen_1965-10-12_true_2021-12-05_0

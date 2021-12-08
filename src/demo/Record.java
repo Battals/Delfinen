@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 public class Record {
 
-    private int holder;
-    private double time;
-    private LocalDate date;
-    private int placement;
-    private Discipline discipline;
+    private final int holder;
+    private final double time;
+    private final LocalDate date;
+    private final int placement;
+    private final Discipline discipline;
     //ID_TIME_DATE_PLACEMENT_DISCIPLINE
 
     //1) Hver swømmers bedste resultat inden for hver swømmediciplin; Klasse?

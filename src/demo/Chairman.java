@@ -80,11 +80,11 @@ public class Chairman extends User {
         Coach coach = null;
         boolean invalidCoach = true;
         while (invalidCoach) {
-            for (int i = 0; i < coaches.size(); i++) {
-                if (coachID == coaches.get(i).getId()) {
-                    coach = coaches.get(i);
+            for (Coach value : coaches) {
+                if (coachID == value.getId()) {
+                    coach = value;
                     invalidCoach = false;
-                } else if (coachID != coaches.get(i).getId()) {
+                } else if (coachID != value.getId()) {
                     ui.printMessage("Ukendt ID");
                     break;
                 }
@@ -95,7 +95,7 @@ public class Chairman extends User {
 
     public void getMemberList() {
         for (int i = 0; i < memberList.getMembers().size(); i++) {
-            ui.printSOUT(memberList.getMembers().get(i));
+            ui.printObject(memberList.getMembers().get(i));
         }
         if (memberList.getMembers().isEmpty()) {
             ui.printMessage("Der findes ingen medlemmer");
@@ -115,7 +115,7 @@ public class Chairman extends User {
         if (coaches.isEmpty()) {
             ui.printMessage("Der findes ingen trænere.");
         } else {
-            ui.printSOUT(coaches);
+            ui.printObject(coaches);
         }
     }
 
@@ -155,21 +155,21 @@ public class Chairman extends User {
                         Tast 2) - For at ændre fødselsdagsdato 
                         Tast 3) - For at ændre status (aktiv/passiv)""");
                 switch (ui.intScanner()) {
-                    case 1:
+                    case 1 -> {
                         ui.printMessage("Indtast nyt navn: ");
                         String name = ui.userInput();
                         memberList.getMembers().get(i).setName(name);
                         ui.printMessage("Navnet er ændret til: " + name);
                         fileHandler.editObject(memberList.getMembers().get(i));
-                        break;
-                    case 2:
+                    }
+                    case 2 -> {
                         ui.printMessage("Indtast ny alder: ");
                         LocalDate alder = ui.typeDate();
                         memberList.getMembers().get(i).setAge(alder);
                         fileHandler.editObject(memberList.getMembers().get(i));
                         ui.printMessage("Alder ændret til: " + alder);
-                        break;
-                    case 3:
+                    }
+                    case 3 -> {
                         ui.printMessage("Ændre medlemmets status til aktiv - tast ja");
                         ui.printMessage("Ændre medlemmets status til passiv - tast nej");
                         String input = ui.userInput();
@@ -180,9 +180,7 @@ public class Chairman extends User {
                         }
                         fileHandler.editObject(memberList.getMembers().get(i));
                         ui.printMessage("Status er ændret");
-                        break;
-
-
+                    }
                 }
             }
         }
@@ -203,6 +201,7 @@ public class Chairman extends User {
         for (int i = 0; i < memberList.getMembers().size(); i++) {
             if (id == memberList.getMembers().get(i).getId()) {
                 invalid = true;
+                break;
             }
         }
         return invalid;

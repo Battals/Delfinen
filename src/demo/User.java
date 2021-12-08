@@ -1,10 +1,7 @@
 package demo;
 
-import ui.Colours;
 import ui.Userinterface;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class User {
@@ -12,9 +9,7 @@ public class User {
     String user;
     String password;
 
-    private ArrayList<User> users = new ArrayList<>();
-    Colours colours = new Colours();
-
+    private final ArrayList<User> users = new ArrayList<>();
     Userinterface ui = new Userinterface();
 
     public User(String user, String password) {
@@ -35,9 +30,6 @@ public class User {
         Scanner login = new Scanner(System.in);
         String userName;
         String userPassword;
-        boolean completed;
-
-        completed = false;
 
         ui.printMessage("Indtast brugernavn: ");
         userName = login.nextLine();
@@ -47,7 +39,6 @@ public class User {
 
         for (User user : users) {
             if (user.user.equals(userName) && user.password.equals(userPassword)) {
-                completed = true;
                 return user;
             }
         }

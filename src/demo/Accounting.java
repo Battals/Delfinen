@@ -14,7 +14,7 @@ public class Accounting extends User {
     double under18 = 1000;
     double over18 = 1600;
     double over60 = 1600 * 0.75;
-    private ArrayList<Member> membersDept = new ArrayList<>();
+    private final ArrayList<Member> membersDept = new ArrayList<>();
 
     Userinterface ui = new Userinterface();
 
@@ -33,17 +33,17 @@ public class Accounting extends User {
     }
 
     public void subscriptionPrint() {
-        ui.printMessage("Kontingent priser:" + System.lineSeparator() +
-                "  - Junior pris: " + under18 + System.lineSeparator() +
-                "  - Senior pris: " + over18 + System.lineSeparator() +
-                "  - Pensionister: " + over60 + System.lineSeparator() +
-                "  - Passive svømmere: " + inactive);
+        ui.printMessage("Kontingent priser:" + " kr." +    System.lineSeparator() +
+                "  - Junior pris:      " + under18 + " kr." + System.lineSeparator() +
+                "  - Senior pris:      " + over18 + " kr." +  System.lineSeparator() +
+                "  - Pensionister:     " + over60 + " kr." +  System.lineSeparator() +
+                "  - Passive svømmere: " + inactive + "  kr.");
     }
 
     public void printDebtors() {
         for (Member member : MemberList.debitors()) {
             if (member.getDebt() < 0) {
-                ui.printSOUT(member);
+                ui.printObject(member);
             }
         }
     }
@@ -61,15 +61,15 @@ public class Accounting extends User {
 
     public void payDebt(Member member, double amount) {
         double newDebt = member.removeDebt(amount);
-        ui.printSOUT("new debt" + newDebt);
+        ui.printObject("new debt" + newDebt);
     }
 
     public void printMonthlyIncome(ArrayList<Member> members) {
         double monthlyIncome = 0;
-        for (int i = 0; i < members.size(); i++) {
-            monthlyIncome += getMemberPrice(members.get(i));
+        for (Member member : members) {
+            monthlyIncome += getMemberPrice(member);
         }
-        ui.printSOUT("Hvert år forventes der at få: " + monthlyIncome + "kr.");
+        ui.printObject("Hvert år forventes der at få: " + monthlyIncome + " kr.");
     }
 
     //PaymentCalculating
@@ -91,8 +91,8 @@ public class Accounting extends User {
 
     public double calculateContingent(ArrayList<Member> members) {
         double result = 0;
-        for (int i = 0; i < members.size(); i++) {
-            result += getMemberPrice(members.get(i));
+        for (Member member : members) {
+            result += getMemberPrice(member);
         }
         return result;
     }
