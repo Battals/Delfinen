@@ -1,5 +1,6 @@
 package demo;
 
+import ui.Colours;
 import ui.Userinterface;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class User {
     String password;
 
     private ArrayList<User> users = new ArrayList<>();
+    Colours colours = new Colours();
 
     Userinterface ui = new Userinterface();
 
@@ -48,9 +50,6 @@ public class User {
                 completed = true;
                 return user;
             }
-        }
-        if (!completed) {
-            ui.printMessage("Forkert brugernavn eller kode!");
         }
         return user;
     }

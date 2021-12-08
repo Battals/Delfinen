@@ -17,6 +17,7 @@ public class Controller {
 
     public ArrayList<Member> memberList = new ArrayList<>();
 
+
     public void programStart() {
         memberList = fileHandler.getMembers();
     }
@@ -39,6 +40,12 @@ public class Controller {
             } else if (Coach.class.isInstance(loginUser)){
                 ui.printMessage(colours.colourWhite("Du er nu logget ind som Træner"));
                 coachControl();
+            } else if (loginUser == null){
+                ui.printMessage(colours.colourRed("Forkert brugernavn eller kode!"));
+                ui.printMessage("Prøv igen.");
+                loginUser = user.login();
+
+
             }
 
         }
