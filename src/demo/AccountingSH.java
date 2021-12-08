@@ -18,6 +18,8 @@ For passivt medlemskab er taksten 500 kr. årligt.
     double over18 = -1600;
     double over60 = -1600 * 0.75;
 
+    MemberList memberList = new MemberList();
+
     //PaymentHandling
     public void addMonthlyDebt(Member member){
         member.addDebt(getMemberPrice(member));
@@ -60,5 +62,10 @@ For passivt medlemskab er taksten 500 kr. årligt.
     }
 
 
+    public void annualPay(){
+        for (Member member : memberList.getMembers()){
+            getMemberPrice(member);
+        }
+    }
 
 }

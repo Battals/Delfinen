@@ -62,11 +62,11 @@ public class User {
 
         Chairman chairmanAccount = new Chairman("admin", "1234");
         Accounting accountControl = new Accounting("acc", "1234");
-        //Coach coachControl = new Coach("coach", "1234");
+        Coach coachControl = new Coach("coach", "1234");
 
         users.add(chairmanAccount);
         users.add(accountControl);
-        //users.add(Coach);
+        users.add(coachControl);
     }
 
 }

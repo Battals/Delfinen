@@ -2,7 +2,7 @@ package demo;
 
 import java.util.ArrayList;
 
-public class Coach {
+public class Coach extends User{
 
     private int id;
     private String name;
@@ -13,9 +13,8 @@ public class Coach {
         return id;
     }
 
-    public Coach(int id, String name){
-        this.id = id;
-        this.name = name;
+    public Coach(String user, String password){
+        super(user,password);
     }
 
 
