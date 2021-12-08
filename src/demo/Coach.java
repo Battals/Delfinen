@@ -15,6 +15,15 @@ public class Coach extends User{
 
     public Coach(String user, String password){
         super(user,password);
+
+    }
+
+    public void printCoachMenu(){
+        ui.printMessage("""
+                
+                Tast 1) - Se konkurrence resultater
+                Tast 9) - Log ud
+                Tast 0) - Slut program""");
     }
 
 

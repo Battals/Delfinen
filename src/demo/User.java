@@ -15,7 +15,7 @@ public class User {
 
     Userinterface ui = new Userinterface();
 
-    public User(String user, String password){
+    public User(String user, String password) {
         this.user = user;
         this.password = password;
     }
@@ -29,7 +29,7 @@ public class User {
         return user + " : " + password;
     }
 
-    public Object login(){
+    public Object login() {
         Scanner login = new Scanner(System.in);
         String userName;
         String userPassword;
@@ -43,26 +43,23 @@ public class User {
         ui.printMessage("Indtast kode: ");
         userPassword = login.nextLine();
 
-        for (User user : users){
-            if (user.user.equals(userName) && user.password.equals(userPassword)){
+        for (User user : users) {
+            if (user.user.equals(userName) && user.password.equals(userPassword)) {
                 completed = true;
                 return user;
-                }
             }
-        if (!completed){
+        }
+        if (!completed) {
             ui.printMessage("Forkert brugernavn eller kode!");
         }
         return user;
     }
 
-    public void usersLogin(){
-        User Chairman;
-        User Accounting;
-        User Coach;
+    public void usersLogin() {
 
         Chairman chairmanAccount = new Chairman("admin", "1234");
-        Accounting accountControl = new Accounting("acc", "1234");
-        Coach coachControl = new Coach("coach", "1234");
+        Accounting accountControl = new Accounting("kasserer", "1234");
+        Coach coachControl = new Coach("træner", "1234");
 
         users.add(chairmanAccount);
         users.add(accountControl);

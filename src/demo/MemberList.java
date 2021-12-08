@@ -19,14 +19,14 @@ public class MemberList {
         return members;
     }
 
-    public ArrayList<Member> getDebitors(){
+    public ArrayList<Member> getDebitors() {
         return debitors;
     }
 
-    public static ArrayList<Member> debitors(){
+    public static ArrayList<Member> debitors() {
 
-        for (Member member : members){
-            if (member.getPay() < Calendar.getInstance().get(Calendar.YEAR)){
+        for (Member member : members) {
+            if (member.getPay() < Calendar.getInstance().get(Calendar.YEAR)) {
                 debitors.add(member);
             }
         }

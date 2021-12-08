@@ -13,6 +13,7 @@ public class MemberCompetitive extends Member {
         this.disciplines = disciplines;
         this.coach = coach;
     }
+
     public MemberCompetitive(boolean isComp, int id, String name, LocalDate age, boolean active, double debt, LocalDate startDate, Coach coach, ArrayList<Discipline> disciplines) {
         super(isComp, id, name, age, active, debt, startDate);
         this.coach = coach;
@@ -23,23 +24,23 @@ public class MemberCompetitive extends Member {
         return disciplines;
     }
 
-    private String disciplinesGetData(){
+    private String disciplinesGetData() {
         boolean crawl = false;
         boolean rygCrawl = false;
         boolean butterfly = false;
         boolean brystswømning = false;
-        for(int i = 0; i < disciplines.size(); i++){
+        for (int i = 0; i < disciplines.size(); i++) {
             Discipline discipline = disciplines.get(i);
-            if(discipline==Discipline.CRAWL){
+            if (discipline == Discipline.CRAWL) {
                 crawl = true;
             }
-            if(discipline==Discipline.RYGCRAWL){
+            if (discipline == Discipline.RYGCRAWL) {
                 rygCrawl = true;
             }
-            if(discipline==Discipline.BUTTERFLY){
+            if (discipline == Discipline.BUTTERFLY) {
                 butterfly = true;
             }
-            if(discipline==Discipline.BREASTSTROKE){
+            if (discipline == Discipline.BREASTSTROKE) {
                 brystswømning = true;
             }
         }

@@ -1,7 +1,6 @@
 package demo;
 
 import database.FileHandler;
-import domain.Controller;
 import ui.Colours;
 
 import java.time.LocalDate;
@@ -9,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Chairman extends User{
+public class Chairman extends User {
 
     MemberList memberList = new MemberList();
     FileHandler fileHandler = new FileHandler();
@@ -23,9 +22,9 @@ public class Chairman extends User{
         super(user, password);
     }
 
-    public void chairmanMenu(){
+    public void chairmanMenu() {
         ui.printMessage("""
-                
+                                
                 Tast 1) - Opret Medlem.
                 Tast 2) - Vis Medlem.
                 Tast 3) - Slet Medlem.
@@ -35,7 +34,7 @@ public class Chairman extends User{
                 Tast 0) - Slut program""");
     }
 
-    public void createMember(){
+    public void createMember() {
         ui.printMessage("Fulde navn:");
         String name = ui.userInput();
         ui.printMessage("Fødseldato: ");
@@ -85,8 +84,7 @@ public class Chairman extends User{
                 if (coachID == coaches.get(i).getId()) {
                     coach = coaches.get(i);
                     invalidCoach = false;
-                }
-                else if (coachID != coaches.get(i).getId()){
+                } else if (coachID != coaches.get(i).getId()) {
                     ui.printMessage("Ukendt ID");
                     break;
                 }
@@ -97,10 +95,10 @@ public class Chairman extends User{
 
     public void getMemberList() {
         for (int i = 0; i < memberList.getMembers().size(); i++) {
-            System.out.println(memberList.getMembers().get(i));
+            ui.printSOUT(memberList.getMembers().get(i));
         }
         if (memberList.getMembers().isEmpty()) {
-            System.out.println("Der findes ingen medlemmer");
+            ui.printMessage("Der findes ingen medlemmer");
         }
     }
 
@@ -113,25 +111,23 @@ public class Chairman extends User{
         //coaches.add(coach);
     }
 
-    public void printCoaches(){
-        if (coaches.isEmpty()){
-            System.out.println("Der findes ingen trænere.");
+    public void printCoaches() {
+        if (coaches.isEmpty()) {
+            ui.printMessage("Der findes ingen trænere.");
         } else {
-        System.out.println(coaches);
+            ui.printSOUT(coaches);
         }
     }
 
 
     public void deleteMember() {
         Scanner sc = new Scanner(System.in);
-        boolean a = false;
-        boolean b = false;
-        System.out.println("Indtast ID på medlemmet du ønsker at slette: ");
+        ui.printMessage("Indtast ID på medlemmet du ønsker at slette: ");
 
         for (int i = 0; i < memberList.getMembers().size(); i++) {
             if (memberList.getMembers().get(i).getId() == ui.intScanner()) {
-                System.out.println("Ønsker du at slette medlemmet " + memberList.getMembers().get(i).getName() + "?");
-                System.out.println("Indtast - Ja/Nej");
+                ui.printMessage("Ønsker du at slette medlemmet " + memberList.getMembers().get(i).getName() + "?");
+                ui.printMessage("Indtast - Ja/Nej");
                 String input = sc.nextLine();
                 if (input.equalsIgnoreCase("Ja")) {
                     memberList.getMembers().remove(i);
@@ -191,19 +187,21 @@ public class Chairman extends User{
             }
         }
     }
-    private int idGenerator(){
+
+    private int idGenerator() {
         int id;
         Random random = new Random();
         id = random.nextInt(9999);
-        while(invalidID(id)){
+        while (invalidID(id)) {
             id = random.nextInt(9999);
         }
         return id;
     }
-    private boolean invalidID(int id){
+
+    private boolean invalidID(int id) {
         boolean invalid = false;
-        for(int i = 0; i < memberList.getMembers().size(); i++){
-            if(id == memberList.getMembers().get(i).getId()){
+        for (int i = 0; i < memberList.getMembers().size(); i++) {
+            if (id == memberList.getMembers().get(i).getId()) {
                 invalid = true;
             }
         }

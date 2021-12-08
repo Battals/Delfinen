@@ -16,17 +16,17 @@ public class Record {
     //3) En måde at se swømmerens bedste tid, inden for hver swømme diciplin, en måde at se top 5
 
     //NormalTraining
-    public Record(int holder, double time, LocalDate date, int placement, Discipline discipline){
+    public Record(int holder, double time, LocalDate date, int placement, Discipline discipline) {
         this.holder = holder;
         this.time = time;
-        this.placement=placement;
+        this.placement = placement;
         this.date = date;
         this.discipline = discipline;
         placement = 0;
     }
 
     //Competition
-    public Record(int holder, double time, LocalDate date, Discipline discipline, int placement){
+    public Record(int holder, double time, LocalDate date, Discipline discipline, int placement) {
         this.holder = holder;
         this.time = time;
         this.date = date;
@@ -46,7 +46,7 @@ public class Record {
         return discipline;
     }
 
-    public String getData(){
+    public String getData() {
         return holder + "_" + time + "_" + date + "_" + placement + "_" + discipline;
     }
 

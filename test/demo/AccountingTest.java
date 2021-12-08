@@ -1,12 +1,12 @@
 package demo;
 
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+//import static org.junit.jupiter.api.Assertions.*;
 
-class AccountingTest {
+/*class AccountingTest {
 
 @Test
     public void testPayDebt(){
@@ -23,7 +23,4 @@ class AccountingTest {
 
     //Assert
     assert((newDebt - 1000) == firstDebt);
-
-}
-
-}
+}*/
