@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class FileHandler {
@@ -77,7 +78,16 @@ public class FileHandler {
         return getMembersToArray(membersData);
     }
     public ArrayList<Record> getRecords(){
-        return null;
+        ArrayList<String> recordsData = new ArrayList<>();
+        try {
+            Scanner sc = new Scanner(fileRecords);
+            while(sc.hasNextLine()){
+                recordsData.add(sc.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return getRecordsToArray(recordsData);
     }
 
     //Private Methods
@@ -143,6 +153,15 @@ public class FileHandler {
         }
         return members;
     }
+    private ArrayList<Record> getRecordsToArray(ArrayList<String> data){
+        ArrayList<Record> records = new ArrayList<>();
+        for(int i = 0; i < data.size(); i++){
+            if(stringReaderRecord(data.get(i)) != null) {
+                records.add(stringReaderRecord(data.get(i)));
+            }
+        }
+        return records;
+    }
     private Member stringReaderMember(String memberData){
         Member member;
         try {
@@ -166,6 +185,18 @@ public class FileHandler {
         return null;
     }
     private Record stringReaderRecord(String recordData){
+        //holder + "_" + time + "_" + date + "_" + placement + "_" + discipline;
+        Record record;
+        try {
+            String[] data = recordData.split("_");
+            int holder = Integer.parseInt(data[0]);
+            double time = Double.parseDouble(data[1]);
+            LocalDate date = stringReaderLocalDate(data[2]);
+            int placement = Integer.parseInt(data[3]);
+            Discipline discipline = Discipline.valueOf(data[4].toUpperCase());
+            record = new Record(holder, time, date, placement, discipline);
+            return record;
+        } catch (ArrayIndexOutOfBoundsException ignored){}
         return null;
     }
     //SubReaders

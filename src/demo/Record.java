@@ -47,7 +47,7 @@ public class Record {
     }
 
     public String getData(){
-        return "test";
+        return holder + "_" + time + "_" + date + "_" + placement + "_" + discipline;
     }
 
 
