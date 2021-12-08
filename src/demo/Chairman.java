@@ -44,13 +44,11 @@ public class Chairman extends User{
         boolean active = ui.yesOrNo();
         ui.printMessage("Er medlemmet konkurrence svømmer?");
         boolean isComp = ui.yesOrNo();
-        //int id = idGenerator();
-        //(int id, String name, LocalDate age, boolean active)
         Member member;
         if (isComp) {
             member = createCompetitiveMember(name, age, true);
         } else {
-            member = new Member(name, age, active);
+            member = new Member(idGenerator(), name, age, active);
         }
         memberList.getMembers().add(member);
         fileHandler.addObject(member);
@@ -94,7 +92,7 @@ public class Chairman extends User{
                 }
             }
         }
-        return new MemberCompetitive(name, age, active, coach, disciplines);
+        return new MemberCompetitive(idGenerator(), name, age, active, coach, disciplines);
     }
 
     public void getMemberList() {
@@ -192,5 +190,23 @@ public class Chairman extends User{
                 }
             }
         }
+    }
+    private int idGenerator(){
+        int id;
+        Random random = new Random();
+        id = random.nextInt(9999);
+        while(invalidID(id)){
+            id = random.nextInt(9999);
+        }
+        return id;
+    }
+    private boolean invalidID(int id){
+        boolean invalid = false;
+        for(int i = 0; i < memberList.getMembers().size(); i++){
+            if(id == memberList.getMembers().get(i).getId()){
+                invalid = true;
+            }
+        }
+        return invalid;
     }
 }

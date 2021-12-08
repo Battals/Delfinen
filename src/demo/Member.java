@@ -33,14 +33,15 @@ public class Member {
     ArrayList<Member> listOfMember = new ArrayList<>();
 
     //New Member
-    public Member(String name, LocalDate age, boolean active) {
+    public Member(int id, String name, LocalDate age, boolean active) {
+        this.id = id;
         this.name = name;
         this. age = age;
         this.active = active;
         startDate = LocalDate.now();
     }
     //Super for Competitive
-    public Member(boolean isComp, String name, LocalDate age, boolean active) {
+    public Member(int id, boolean isComp, String name, LocalDate age, boolean active) {
         this.isComp = isComp;
         this.id = id;
         this.name = name;

@@ -8,8 +8,8 @@ public class MemberCompetitive extends Member {
     private Coach coach;
     private ArrayList<Discipline> disciplines;
 
-    public MemberCompetitive(String name, LocalDate age, boolean active, Coach coach, ArrayList<Discipline> disciplines) {
-        super(true, name, age, active);
+    public MemberCompetitive(int id, String name, LocalDate age, boolean active, Coach coach, ArrayList<Discipline> disciplines) {
+        super(id, true, name, age, active);
         this.disciplines = disciplines;
         this.coach = coach;
     }
