@@ -1,12 +1,15 @@
 package demo;
 
 
+import database.FileHandler;
 import ui.Userinterface;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Accounting extends User {
+
+    FileHandler fileHandler = new FileHandler();
 
     //Står for aflæsning af debt/gæld, og medlemmernes subscription pris, samt fremtidige betalinger
 
@@ -28,6 +31,8 @@ public class Accounting extends User {
                 Tast 1) - Få overblik over indkomst
                 Tast 2) - Se medlemmer i restance
                 Tast 3) - Se liste over kontingent priser
+                Tast 4) - Se svømmers pris
+                Tast 5) - Svømmer betaling
                 Tast 9) - Log ud
                 Tast 0) - Slut program""");
     }
@@ -48,17 +53,7 @@ public class Accounting extends User {
         }
     }
 
-    //PaymentHandling
-    public void addMonthlyDebt(Member member) {
-        member.addDebt(-getMemberPrice(member));
-    }
-
-    public void addMonthlyDebtALL(ArrayList<Member> members) {
-        for (Member member : members) {
-            member.addDebt(-getMemberPrice(member));
-        }
-    }
-
+    //Metoder der skal bruges i controller
     public void payPlayerDebt(ArrayList<Member> members){
         ui.printMessage("Hvilken svømmer vil betale?");
         Member member = findMember(members);
@@ -70,16 +65,32 @@ public class Accounting extends User {
         double payment = Double.sum(kroner, cents/100);
         member.removeDebt(payment);
         ui.printMessage("Brugerens nye gæld ligger på: " + member.getDebt() + "kr.");
-
-
+        fileHandler.editObject(member);
     }
-
-    public void printMonthlyIncome(ArrayList<Member> members) {
+    public void printAnnualIncome(ArrayList<Member> members) {
         double monthlyIncome = 0;
         for (Member member : members) {
             monthlyIncome += getMemberPrice(member);
         }
         ui.printObject("Hvert år forventes der at få: " + monthlyIncome + " kr.");
+    }
+    public void printMemberPrice(ArrayList<Member> members) {
+        Member member = findMember(members);
+        ui.printMessage("Svømmer skal betale: " + getMemberPrice(member) + "kr. om året.");
+    }
+
+
+
+    //PaymentHandling
+    //Add års pris til enkelt medlem
+    public void addYearlyDebt(Member member) {
+        member.addDebt(-getMemberPrice(member));
+    }
+    //Add års pris til alle medlemmer
+    public void addYearlyDebtALL(ArrayList<Member> members) {
+        for (Member member : members) {
+            member.addDebt(-getMemberPrice(member));
+        }
     }
 
     //PaymentCalculating
@@ -98,7 +109,6 @@ public class Accounting extends User {
             return 0;
         }
     }
-
     public double calculateContingent(ArrayList<Member> members) {
         double result = 0;
         for (Member member : members) {
@@ -106,12 +116,9 @@ public class Accounting extends User {
         }
         return result;
     }
-
-
     public void getAge(Member member) {
         int age = LocalDate.now().compareTo(member.getAge());
     }
-
     public ArrayList<Member> getMemberDept() {
         return membersDept;
     }

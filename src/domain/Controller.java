@@ -39,15 +39,15 @@ public class Controller {
         while (run) {
             if (loginUser instanceof Chairman) {
                 ui.printMessage(colours.colourWhite("Du er nu logget ind som Formand."));
-                chairmanControl();
+                chairmanControl((Chairman) loginUser);
                 break;
             } else if (loginUser instanceof Accounting) {
                 ui.printMessage(colours.colourWhite("Du er nu logget ind som Kasserer."));
-                accountControl();
+                accountControl((Accounting) loginUser);
                 break;
             } else if (loginUser instanceof Coach){
                 ui.printMessage(colours.colourWhite("Du er nu logget ind som Træner"));
-                coachControl();
+                coachControl((Coach) loginUser);
             } else if (loginUser == null){
                 ui.printMessage(colours.colourRed("Forkert brugernavn eller kode!"));
                 ui.printMessage("Prøv igen.");
@@ -60,8 +60,7 @@ public class Controller {
 
     }
 
-    public void chairmanControl() {
-        Chairman chairman = new Chairman("admin", "1234");
+    public void chairmanControl(Chairman chairman) {
         while (run) {
             chairman.chairmanMenu();
             switch (ui.userInputNumber()) {
@@ -93,20 +92,25 @@ public class Controller {
             }
         }
     }
-    public void accountControl() {
-        Accounting accounting = new Accounting("acc", "1234");
+    public void accountControl(Accounting accounting) {
         while (run) {
             accounting.accountMenu();
             switch (ui.userInputNumber()) {
                 case 1 ->
-                        //Overblik over inkomst til klubben
-                        accounting.printMonthlyIncome(memberList);
+                        //Overblik over indkomst til klubben
+                        accounting.printAnnualIncome(memberList);
                 case 2 ->
                         //Se listen over medlemmer der i restance
                         accounting.printDebtors();
                 case 3 ->
                         //Se listen over priserne
                         accounting.subscriptionPrint();
+                case 4 ->
+                        //Se svømmers pris
+                accounting.printMemberPrice(memberList);
+                case 5 ->
+                        //Bruger kan betale
+                accounting.payPlayerDebt(memberList);
                 case 9 -> {
                         ui.printMessage("Logger ud");
                         //Starter forfra
@@ -120,18 +124,20 @@ public class Controller {
             }
         }
     }
-    public void coachControl(){
-        Coach coach = new Coach("coach","1234", 1, "test");
+    public void coachControl(Coach coach){
         while (run) {
             coach.printCoachMenu();
             switch (ui.userInputNumber()) {
                 case 1 ->
-                    //Tjek resultater
-                    coach.checkTopFive(recordList);
+                        //Tjek resultater
+                        coach.checkTopFive(recordList);
 
                 case 2 ->
                         //Tjek svømmers bedste tid
-                    coach.checkPlayerResult(memberList, recordList);
+                        coach.checkPlayerResult(memberList, recordList);
+                case 3 ->
+                        //Tilføj rekord
+                        coach.addRecord(memberList);
 
                 case 9 -> {
                         ui.printMessage("Logger ud");

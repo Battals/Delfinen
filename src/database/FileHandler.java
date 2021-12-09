@@ -55,10 +55,13 @@ public class FileHandler {
     }
     public void editObject(Object object) {
         if(object instanceof Member){
-            editData(((Member) object).getData(), fileMembers);
+            editData(((Member) object).getData(), fileMembers, 1);
         }
         else if(object instanceof Record){
-            editData(((Record) object).getData(),fileRecords);
+            editData(((Record) object).getData(),fileRecords, 1);
+        }
+        else if(object instanceof User){
+            editData(((User) object).getData(), fileUsers, 2);
         }
         else {
             System.out.println("invalid(edit object)?");
@@ -123,14 +126,15 @@ public class FileHandler {
     private void deleteData(String data, File file){
     }
     //Edit Data
-    private void editData(String data, File file){
+
+    private void editData(String data, File file, int idPlace){
         //https://stackoverflow.com/questions/31375972/how-to-replace-a-specific-line-in-a-file-using-java
         Path path = Paths.get(file.getPath());
         List<String> lines = null;
         String[] dataList = data.split("_");
         try {
             lines = Files.readAllLines(path, StandardCharsets.UTF_8);
-            int line = findDataLine(dataList, file);
+            int line = findDataLine(dataList, file, idPlace);
             if(line == -1){
                 System.out.println("can't find data");
                 return;
@@ -141,14 +145,14 @@ public class FileHandler {
             e.printStackTrace();
         }
     }
-    private int findDataLine(String[] data, File file){
+    private int findDataLine(String[] data, File file, int idPlace){
         try {
             Scanner sc = new Scanner(file);
             int lineCount = 0;
             while(sc.hasNextLine()){
                 lineCount++;
                 String[] tempData = sc.nextLine().split("_");
-                if(tempData[0].equals(data[0])){
+                if(tempData[idPlace-1].equals(data[idPlace-1])){
                     return lineCount;
                 }
             }

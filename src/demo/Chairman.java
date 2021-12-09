@@ -124,7 +124,6 @@ public class Chairman extends User {
         }
     }
 
-
     public void deleteMember() {
         Scanner sc = new Scanner(System.in);
         ui.printMessage("Indtast ID på medlemmet du ønsker at slette: ");

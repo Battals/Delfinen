@@ -1,4 +1,4 @@
-1_false_Ahsan Iqbal_2000-07-10_true_2021-12-05_-1600
+1_false_Ahsan Iqbal_2000-07-10_true_2021-12-05_-1000.0
 2_false_Jack Black_1999-07-29_true_2021-12-02_0
 3_false_Hassan Mand_1999-07-11_true_2021-12-05_0
 4_false_Ahsan Iqbal_1999-07-11_true_2021-12-05_0
@@ -11,7 +11,7 @@
 20_false_inger mikkelsen_1955-02-05_true_2021-12-06_0
 30_false_Battal Roni ØZCAN_2001-05-04_true_2021-12-06_0
 40_true_aaa_2001-05-04_true_2021-12-06_0_1_false_false_false_false
-50_true_Kasper jeNSEN_1997-05-03_true_2021-12-06_0_1_true_true_false_true
+50_true_Kasper jeNSEN_1997-05-03_false_2021-12-06_0.0_1_true_true_false_true
 60_false_Mester Festeren_1975-05-09_true_2021-12-08_0
 3485_false_FesterMesteren_1970-07-02_true_2021-12-08_0
 8652_false_testermesteren_2002-02-02_true_2021-12-08_0

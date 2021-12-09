@@ -1,5 +1,8 @@
 package demo;
 
+import database.FileHandler;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Coach extends User{
@@ -8,6 +11,7 @@ public class Coach extends User{
     private String name;
 
     RecordResults recordResults = new RecordResults();
+    FileHandler fileHandler = new FileHandler();
 
     public int getId() {
         return id;
@@ -27,6 +31,7 @@ public class Coach extends User{
                 
                 Tast 1) - Se konkurrence resultater
                 Tast 2) - Se svømmers bedste resultater
+                Tast 3) - Tilføj Rekord
                 Tast 9) - Log ud
                 Tast 0) - Slut program""");
     }
@@ -74,6 +79,63 @@ public class Coach extends User{
             ui.printMessage("Der findes ingen bedste tider inden for disciplinen: " + discipline.name());
         }
 
+    }
+
+    public void addRecord(ArrayList<Member> members){
+        ui.printMessage("Hvilken svømmer tilhører rekorden?");
+        Member member = findMember(members);
+        if(member instanceof MemberCompetitive){
+            ui.printMessage("Hvad lå tiden på?");
+            ui.printMessage("Antal Minutter: ");
+            double minutes = ui.intScanner();
+            ui.printMessage("Antal Sekunder: ");
+            double seconds = ui.intScanner();
+            double time = Double.sum(minutes, seconds/100);
+            ui.printMessage("Hvad dato blev rekorden taget?");
+            LocalDate date = ui.typeDate();
+            ui.printMessage("Hvad plads kom svømmer?");
+            int placement = ui.intScanner();
+            ui.printMessage("Hvilken discipline?");
+            Discipline discipline = chooseDiscipline((MemberCompetitive) member);
+            if(discipline!=null) {
+                fileHandler.addObject(new Record(member.getId(), time, date, placement, discipline));
+            }
+        } else {
+            ui.printMessage("denne svømmer er ikke konkurrencesvømmer");
+        }
+    }
+    public Discipline chooseDiscipline(MemberCompetitive member){
+        ui.printMessage("hvilken disciplin?");
+        ui.printMessage("1) Crawl\n2) Rygcrawl\n3) Butterfly\n4) Breaststroke");
+        int choice = ui.intScanner();
+        while(choice<1||choice>4){
+            ui.printMessage("skriv et tal mellem 1-4");
+            choice = ui.intScanner();
+        }
+        switch(choice){
+            case 1:
+                if(member.getDisciplines().contains(Discipline.CRAWL)) {
+                    return Discipline.CRAWL;
+                }
+                break;
+            case 2:
+                if(member.getDisciplines().contains(Discipline.RYGCRAWL)) {
+                    return Discipline.RYGCRAWL;
+                }
+                break;
+            case 3:
+                if(member.getDisciplines().contains(Discipline.BUTTERFLY)) {
+                    return Discipline.BUTTERFLY;
+                }
+                break;
+            case 4:
+                if(member.getDisciplines().contains(Discipline.BREASTSTROKE)) {
+                    return Discipline.BREASTSTROKE;
+                }
+                break;
+        }
+        ui.printMessage("Svømmer træner ikke i denne disciplin");
+        return null;
     }
 
     public Member findMember(ArrayList<Member> members){
