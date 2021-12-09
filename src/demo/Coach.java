@@ -8,13 +8,13 @@ public class Coach extends User{
     public int getId() {
         return id;
     }
-
-    public Coach(String user, String password){
-        super(user,password);
+    public String getName() {
+        return name;
     }
 
-    public void printResultater(){
-        MemberCompetitive memberCompetitive;
+    public Coach(String user, String password, int id, String name){
+        super(user,password);
+        this.id = id;
     }
 
     public void printCoachMenu(){

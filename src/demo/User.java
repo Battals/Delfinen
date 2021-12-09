@@ -18,7 +18,8 @@ public class User {
     }
 
 
-    public User() {
+    public User(ArrayList<User> users) {
+        this.users.addAll(users);
     }
 
     @Override
@@ -43,17 +44,6 @@ public class User {
             }
         }
         return user;
-    }
-
-    public void usersLogin() {
-
-        Chairman chairmanAccount = new Chairman("admin", "1234");
-        Accounting accountControl = new Accounting("kasserer", "1234");
-        Coach coachControl = new Coach("træner", "1234");
-
-        users.add(chairmanAccount);
-        users.add(accountControl);
-        users.add(coachControl);
     }
 
 }

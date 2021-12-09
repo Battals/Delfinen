@@ -1,1 +1,0 @@
-MEMBER ID_BETALING, enten beløb eller hak/kryds

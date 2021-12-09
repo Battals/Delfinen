@@ -1,0 +1,3 @@
+CHAIRMAN_admin_1234
+COACH_træner_1234_1_Karsten
+ACCOUNTING_kasserer_1234

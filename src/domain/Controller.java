@@ -2,8 +2,10 @@ package domain;
 
 import database.FileHandler;
 import demo.*;
+import demo.Record;
 import ui.Colours;
 import ui.Userinterface;
+
 import java.util.ArrayList;
 
 public class Controller {
@@ -13,20 +15,24 @@ public class Controller {
     Userinterface ui = new Userinterface();
     Colours colours = new Colours();
     FileHandler fileHandler = new FileHandler();
-    User user = new User();
+    User user;
 
     public ArrayList<Member> memberList = new ArrayList<>();
+    public ArrayList<User> userList = new ArrayList<>();
+    public ArrayList<Record> recordList = new ArrayList<>();
 
 
     public void programStart() {
         memberList = fileHandler.getMembers();
+        userList = fileHandler.getUsers();
+        recordList = fileHandler.getRecords();
+        user = new User(fileHandler.getUsers());
     }
 
     public void start() {
         ui.printWelcome();
         MemberList.programStart();
         programStart();
-        user.usersLogin();
         Object loginUser = user.login();
         while (run) {
             if (loginUser instanceof Chairman) {
@@ -85,7 +91,6 @@ public class Controller {
             }
         }
     }
-
     public void accountControl() {
         Accounting accounting = new Accounting("acc", "1234");
         while (run) {
@@ -113,9 +118,8 @@ public class Controller {
             }
         }
     }
-
     public void coachControl(){
-        Coach coach = new Coach("coach","1234");
+        Coach coach = new Coach("coach","1234", 1, "test");
         while (run) {
             coach.printCoachMenu();
             switch (ui.userInputNumber()) {

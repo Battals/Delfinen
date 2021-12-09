@@ -20,7 +20,7 @@ public class FileHandler {
 
     File fileMembers = new File("data/members.txt");
     File fileRecords = new File("data/records.txt");
-    File fileContingent = new File("data/contingent.txt");
+    File fileUsers = new File("data/users.txt");
 
     //MEMBERDATA:
     //ID_ISCOMP_NAME_AGE_ACTIVE_STARTDATE
@@ -39,7 +39,7 @@ public class FileHandler {
     //HOLDERID_PAYMENT(Sletter payments når debt er 0?)
 
     //DataHandling
-    public void addObject(Object object){
+    public void addObject(Object object) {
         if(object instanceof Member){
             addData(((Member) object).getData(), fileMembers);
         }
@@ -50,7 +50,7 @@ public class FileHandler {
             System.out.println("invalid?(add object)");
         }
     }
-    public void editObject(Object object){
+    public void editObject(Object object) {
         if(object instanceof Member){
             editData(((Member) object).getData(), fileMembers);
         }
@@ -63,6 +63,7 @@ public class FileHandler {
     }
     public void removeObject(Object object){
     }
+
 
     //DataReading
     public ArrayList<Member> getMembers(){
@@ -88,6 +89,18 @@ public class FileHandler {
             e.printStackTrace();
         }
         return getRecordsToArray(recordsData);
+    }
+    public ArrayList<User> getUsers(){
+        ArrayList<String> usersData = new ArrayList<>();
+        try {
+            Scanner sc = new Scanner(fileUsers);
+            while(sc.hasNextLine()){
+                usersData.add(sc.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return getUsersToArray(usersData);
     }
 
     //Private Methods
@@ -162,6 +175,16 @@ public class FileHandler {
         }
         return records;
     }
+    private ArrayList<User> getUsersToArray(ArrayList<String> data){
+        ArrayList<User> users = new ArrayList<>();
+        for(int i = 0; i < data.size(); i++){
+            if(stringReaderUser(data.get(i)) != null) {
+                users.add(stringReaderUser(data.get(i)));
+            }
+        }
+        return users;
+    }
+    //ObjectReader
     private Member stringReaderMember(String memberData){
         Member member;
         try {
@@ -199,6 +222,25 @@ public class FileHandler {
         } catch (ArrayIndexOutOfBoundsException ignored){}
         return null;
     }
+    private User stringReaderUser(String userData){
+        try {
+            String[] data = userData.split("_");
+            String type = data[0];
+            String name = data[1];
+            String password = data[2];
+            switch(type){
+                case "CHAIRMAN":
+                    return new Chairman(name, password);
+                case "COACH":
+                    int id = Integer.parseInt(data[3]);
+                    String fullName = data[4];
+                    return new Coach(name, password, id, fullName);
+                case "ACCOUNTING":
+                    return new Accounting(name, password);
+            }
+        } catch (ArrayIndexOutOfBoundsException ignored){}
+        return null;
+    }
     //SubReaders
     private ArrayList<Discipline> stringReaderDisciplines(String crawl, String rygcrawl, String butterfly, String breaststroke){
         ArrayList<Discipline> disciplines = new ArrayList<>();
@@ -216,19 +258,19 @@ public class FileHandler {
         }
         return disciplines;
     }
-    public LocalTime stringReaderLocalTime(String time) {
-        String[] data = time.split(":");
-        int hours = Integer.parseInt(data[0]);
-        int minutes = Integer.parseInt(data[1]);
-        int seconds = Integer.parseInt(data[2]);
-        return LocalTime.of(hours, minutes, seconds);
-    }
     public LocalDate stringReaderLocalDate(String date) {
         String[] data = date.split("-");
         int year = Integer.parseInt(data[0]);
         int month = Integer.parseInt(data[1]);
         int day = Integer.parseInt(data[2]);
         return LocalDate.of(year, month, day);
+    }
+    public LocalTime stringReaderLocalTime(String time) {
+        String[] data = time.split(":");
+        int hours = Integer.parseInt(data[0]);
+        int minutes = Integer.parseInt(data[1]);
+        int seconds = Integer.parseInt(data[2]);
+        return LocalTime.of(hours, minutes, seconds);
     }
 
     //Junk(Skal laves her eller i andre klasser)

@@ -24,7 +24,6 @@ public class MemberList {
     }
 
     public static ArrayList<Member> debitors() {
-
         for (Member member : members) {
             if (member.getPay() < Calendar.getInstance().get(Calendar.YEAR)) {
                 debitors.add(member);
