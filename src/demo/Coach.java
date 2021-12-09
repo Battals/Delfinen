@@ -76,7 +76,6 @@ public class Coach extends User{
 
     }
 
-
     public Member findMember(ArrayList<Member> members){
         Member member = null;
         while(member == null){
@@ -92,6 +91,11 @@ public class Coach extends User{
             }
         }
         return member;
+    }
+
+    @Override
+    public String getData() {
+        return "COACH_" + super.getData() + "_" + id + "_" + name;
     }
 
     @Override

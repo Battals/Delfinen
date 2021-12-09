@@ -104,11 +104,16 @@ public class Chairman extends User {
 
     public void createCoach() {
         Coach coach;
-        int id = coaches.size() + 1;
-        ui.printMessage("Trænerens navn:");
+        ui.printMessage("Trænerens brugernavn:");
         String name = ui.userInput();
-        //coach = new Coach(id, name);
-        //coaches.add(coach);
+        ui.printMessage("Trænerens password: ");
+        String password = ui.userInput();
+        ui.printMessage("Trænerens ID: ");
+        int id = ui.intScanner();
+        ui.printMessage("Trænerens navn");
+        String fullName = ui.userInput();
+        coach = new Coach(name, password, id, fullName);
+        fileHandler.addObject(coach);
     }
 
     public void printCoaches() {
@@ -205,5 +210,10 @@ public class Chairman extends User {
             }
         }
         return invalid;
+    }
+
+    @Override
+    public String getData() {
+        return "CHAIRMAN_" + super.getData();
     }
 }

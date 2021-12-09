@@ -22,6 +22,24 @@ public class User {
         this.users.addAll(users);
     }
 
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public ArrayList<Coach> getCoaches(){
+        ArrayList<Coach> coaches = new ArrayList<>();
+        for (int i = 0; i < users.size(); i++){
+            if(users.get(i) instanceof Coach){
+                coaches.add((Coach) users.get(i));
+            }
+        }
+        return coaches;
+    }
+
+    public String getData(){
+        return user + "_" + password;
+    }
+
     @Override
     public String toString() {
         return user + " : " + password;

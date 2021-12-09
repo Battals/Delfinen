@@ -20,6 +20,7 @@ public class Controller {
     public ArrayList<Member> memberList = new ArrayList<>();
     public ArrayList<User> userList = new ArrayList<>();
     public ArrayList<Record> recordList = new ArrayList<>();
+    public ArrayList<Coach> coachList = new ArrayList<>();
 
 
     public void programStart() {
@@ -27,6 +28,7 @@ public class Controller {
         userList = fileHandler.getUsers();
         recordList = fileHandler.getRecords();
         user = new User(fileHandler.getUsers());
+        coachList = user.getCoaches();
     }
 
     public void start() {

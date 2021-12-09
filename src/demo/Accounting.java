@@ -59,9 +59,19 @@ public class Accounting extends User {
         }
     }
 
-    public void payDebt(Member member, double amount) {
-        double newDebt = member.removeDebt(amount);
-        ui.printObject("new debt" + newDebt);
+    public void payPlayerDebt(ArrayList<Member> members){
+        ui.printMessage("Hvilken svømmer vil betale?");
+        Member member = findMember(members);
+        ui.printMessage("Hvor meget er der blevet betalt?");
+        ui.printMessage("Kroner: ");
+        double kroner = ui.intScanner();
+        ui.printMessage("Øre: ");
+        double cents = ui.intScanner();
+        double payment = Double.sum(kroner, cents/100);
+        member.removeDebt(payment);
+        ui.printMessage("Brugerens nye gæld ligger på: " + member.getDebt() + "kr.");
+
+
     }
 
     public void printMonthlyIncome(ArrayList<Member> members) {
@@ -105,6 +115,25 @@ public class Accounting extends User {
     public ArrayList<Member> getMemberDept() {
         return membersDept;
     }
+    public Member findMember(ArrayList<Member> members){
+        Member member = null;
+        while(member == null){
+            for(int i = 0; i < members.size(); i++){
+                ui.printMessage(String.valueOf(members.get(i)));
+            }
+            ui.printMessage("Skriv svømmerens id");
+            int id = ui.intScanner();
+            for(int i = 0; i < members.size(); i++){
+                if(id==members.get(i).getId()){
+                    member=members.get(i);
+                }
+            }
+        }
+        return member;
+    }
 
-
+    @Override
+    public String getData() {
+        return "ACCOUNTING_" + super.getData();
+    }
 }

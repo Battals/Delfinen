@@ -46,6 +46,9 @@ public class FileHandler {
         else if(object instanceof Record){
             addData(((Record) object).getData(),fileRecords);
         }
+        else if(object instanceof User){
+            addData(((User) object).getData(), fileUsers);
+        }
         else {
             System.out.println("invalid?(add object)");
         }
@@ -274,9 +277,20 @@ public class FileHandler {
         int seconds = Integer.parseInt(data[2]);
         return LocalTime.of(hours, minutes, seconds);
     }
-
-    //Junk(Skal laves her eller i andre klasser)
     private Coach findCoach(String coachID){
+        try {
+            Scanner sc = new Scanner(fileUsers);
+            while(sc.hasNextLine()){
+                User user = stringReaderUser(sc.nextLine());
+                if(user instanceof Coach){
+                    if(Integer.parseInt(coachID)== ((Coach) user).getId()){
+                        return (Coach) user;
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }
