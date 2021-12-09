@@ -65,7 +65,7 @@ public class Userinterface {
         return LocalDate.of(year, month, day);
     }
 
-    public boolean yesOrNo() {
+    public boolean yesOrNo(){
         Scanner sc = new Scanner(System.in);
         printMessage("Ja/Nej");
         String answer = sc.nextLine().toLowerCase();
