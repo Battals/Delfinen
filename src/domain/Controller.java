@@ -124,8 +124,13 @@ public class Controller {
             coach.printCoachMenu();
             switch (ui.userInputNumber()) {
                 case 1 ->
-                        //Tjek resultater
-                        ui.printMessage("hej");
+                    //Tjek resultater
+                    coach.checkTopFive(recordList);
+
+                case 2 ->
+                        //Tjek svømmers bedste tid
+                    coach.checkPlayerResult(memberList, recordList);
+
                 case 9 -> {
                         ui.printMessage("Logger ud");
                         //Starter forfra

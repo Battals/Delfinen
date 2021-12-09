@@ -219,7 +219,9 @@ public class FileHandler {
             Discipline discipline = Discipline.valueOf(data[4].toUpperCase());
             record = new Record(holder, time, date, placement, discipline);
             return record;
-        } catch (ArrayIndexOutOfBoundsException ignored){}
+        } catch (ArrayIndexOutOfBoundsException ignored){
+        } catch (Exception ignored){
+        }
         return null;
     }
     private User stringReaderUser(String userData){
@@ -244,16 +246,16 @@ public class FileHandler {
     //SubReaders
     private ArrayList<Discipline> stringReaderDisciplines(String crawl, String rygcrawl, String butterfly, String breaststroke){
         ArrayList<Discipline> disciplines = new ArrayList<>();
-        if(Boolean.getBoolean(crawl)){
+        if(crawl.equals("true")){
             disciplines.add(Discipline.CRAWL);
         }
-        if(Boolean.getBoolean(rygcrawl)){
+        if(rygcrawl.equals("true")){
             disciplines.add(Discipline.RYGCRAWL);
         }
-        if(Boolean.getBoolean(butterfly)){
+        if(butterfly.equals("true")){
             disciplines.add(Discipline.BUTTERFLY);
         }
-        if(Boolean.getBoolean(breaststroke)){
+        if(breaststroke.equals("true")){
             disciplines.add(Discipline.BREASTSTROKE);
         }
         return disciplines;
