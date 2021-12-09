@@ -7,6 +7,13 @@ import java.util.ArrayList;
 
 public class Coach extends User{
 
+    /**
+     *
+     * @author Ahsan Masood Iqbal
+     * @author Rashaun Godding
+     *
+     */
+
     private int id;
     private String name;
 

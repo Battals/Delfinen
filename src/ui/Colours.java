@@ -2,6 +2,12 @@ package ui;
 
 public class Colours {
 
+    /**
+     *
+     * @author Battal R. Ozcan
+     *
+     */
+
     public static final String green = "\u001B[32m";
     public static final String reset = "\u001B[0m";
     public static final String white = "\u001B[37m";

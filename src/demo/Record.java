@@ -4,6 +4,13 @@ import java.time.LocalDate;
 
 public class Record {
 
+    /**
+     *
+     * @author Abdallah Ha
+     * @author Rashaun Godding
+     *
+     */
+
     private final int holder;
     private final double time;
     private final LocalDate date;

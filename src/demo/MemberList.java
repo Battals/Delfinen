@@ -7,6 +7,13 @@ import java.util.Calendar;
 
 public class MemberList {
 
+    /**
+     *
+     * @author Battal R. Ozcan
+     * @author Ahsan Masood Iqbal
+     *
+     */
+
     static ArrayList<Member> members = new ArrayList<>();
     static ArrayList<Member> debitors = new ArrayList<>();
     static FileHandler fileHandler = new FileHandler();

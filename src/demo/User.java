@@ -6,6 +6,13 @@ import java.util.Scanner;
 
 public class User {
 
+    /**
+     *
+     * @author Ahsan Masood Iqbal
+     * @author Battal R. Ozcan
+     *
+     */
+
     String user;
     String password;
 

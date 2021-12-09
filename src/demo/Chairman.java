@@ -10,6 +10,13 @@ import java.util.Scanner;
 
 public class Chairman extends User {
 
+    /**
+     *
+     * @author Abdallah Ha
+     * @author Ahsan Masood Iqbal
+     *
+     */
+
     MemberList memberList = new MemberList();
     FileHandler fileHandler = new FileHandler();
 

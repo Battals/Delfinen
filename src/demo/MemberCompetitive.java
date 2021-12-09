@@ -5,6 +5,13 @@ import java.util.ArrayList;
 
 public class MemberCompetitive extends Member {
 
+    /**
+     *
+     * @author Abdallah Ha
+     * @author Battal R. Ozcan
+     *
+     */
+
     private final Coach coach;
     private final ArrayList<Discipline> disciplines;
 

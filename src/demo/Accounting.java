@@ -9,6 +9,15 @@ import java.util.ArrayList;
 
 public class Accounting extends User {
 
+    /**
+     *
+     * @author Abdallah Ha
+     * @author Ahsan Masood Iqbal
+     * @author Battal R. Ozcan
+     * @author Rashaun Godding
+     *
+     */
+
     FileHandler fileHandler = new FileHandler();
 
     //Står for aflæsning af debt/gæld, og medlemmernes subscription pris, samt fremtidige betalinger

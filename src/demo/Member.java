@@ -4,6 +4,12 @@ import java.time.LocalDate;
 
 public class Member {
 
+    /**
+     *
+     * @author Battal R. Ozcan
+     *
+     */
+
     private boolean isComp = false;
     private final int id; //Må ikke redigeres
     private String name;

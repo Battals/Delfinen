@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 public class RecordResults {
 
+    /**
+     *
+     * @author Abdallah Ha
+     * @author Rashaun Godding
+     *
+     */
+
     //Tilføj discipline samt alle records, og du får ArrayList tilbage der har top 5: Arraynummer, 0 = 1st plads, 4 = 5th plads
     public ArrayList<Record> topFiveTimes(Discipline discipline, ArrayList<Record> records) {
         records = getDisciplineRecords(discipline, records);

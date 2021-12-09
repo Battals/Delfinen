@@ -10,6 +10,15 @@ import java.util.ArrayList;
 
 public class Controller {
 
+    /**
+     *
+     * @author Abdallah Ha
+     * @author Ahsan Masood Iqbal
+     * @author Battal R. Ozcan
+     * @author Rashaun Godding
+     *
+     */
+
     boolean run = true;
 
     Userinterface ui = new Userinterface();

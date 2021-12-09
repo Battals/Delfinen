@@ -18,6 +18,12 @@ import java.util.Scanner;
 
 public class FileHandler {
 
+    /**
+     *
+     * @author Rashaun Godding
+     *
+     */
+
     File fileMembers = new File("data/members.txt");
     File fileRecords = new File("data/records.txt");
     File fileUsers = new File("data/users.txt");

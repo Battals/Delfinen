@@ -5,6 +5,15 @@ import java.util.Scanner;
 
 public class Userinterface {
 
+    /**
+     *
+     * @author Abdallah Ha
+     * @author Ahsan Masood Iqbal
+     * @author Battal R. Ozcan
+     * @author Rashaun Godding
+     *
+     */
+
     Scanner sc = new Scanner(System.in);
     Colours colour = new Colours();
 
